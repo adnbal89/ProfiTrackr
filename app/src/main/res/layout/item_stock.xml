@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:layout_margin="8dp"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:id="@+id/text_view_symbol"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="SYMBOL"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_quantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:text="Adet : "
+        app:layout_constraintEnd_toEndOf="@+id/text_view_symbol"
+        app:layout_constraintStart_toStartOf="@+id/text_view_symbol"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
+
+    <TextView
+        android:id="@+id/text_view_price_header"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+
+        android:text="Fiyat :"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_last_price_header"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_price"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/text_view_symbol"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity" />
+
+    <TextView
+        android:id="@+id/text_view_difference_header"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        android:text="Fark :"
+
+        app:layout_constraintBottom_toTopOf="@+id/text_view_date_header"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_difference"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/text_view_symbol"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_last_price_header" />
+
+    <TextView
+        android:id="@+id/text_view_date_header"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        android:text="Tarih :"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_date"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/text_view_symbol"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_difference_header" />
+
+    <TextView
+        android:id="@+id/text_view_last_price_header"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        android:text="Son Fiyat :"
+
+        app:layout_constraintBottom_toTopOf="@+id/text_view_difference_header"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_last_price"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/text_view_symbol"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_price_header" />
+
+    <TextView
+        android:id="@+id/text_view_price"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_last_price"
+
+        app:layout_constraintEnd_toStartOf="@+id/text_view_cost_header"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_price_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/text_view_last_price"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_difference"
+
+        app:layout_constraintEnd_toStartOf="@+id/text_view_total_header"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_last_price_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_price"
+        tools:text="20" />
+
+    <TextView
+        android:id="@+id/text_view_difference"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_date"
+
+        app:layout_constraintEnd_toStartOf="@+id/text_view_profit_header"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_difference_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_last_price"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/text_view_date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toStartOf="@+id/text_view_profit_percentage_header"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_date_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_difference"
+        tools:text="10.10.2022" />
+
+    <TextView
+        android:id="@+id/text_view_cost_header"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        android:text="Maliyet :"
+
+        app:layout_constraintBottom_toTopOf="@+id/text_view_total_header"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_cost"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_price"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity" />
+
+    <TextView
+        android:id="@+id/text_view_total_header"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        android:text="Toplam :"
+
+        app:layout_constraintBottom_toTopOf="@+id/text_view_profit_header"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_total"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_last_price"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_cost_header" />
+
+    <TextView
+        android:id="@+id/text_view_profit_header"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        android:text="Kâr (TL) :"
+
+        app:layout_constraintBottom_toTopOf="@+id/text_view_profit_percentage_header"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_profit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_difference"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_total_header" />
+
+    <TextView
+        android:id="@+id/text_view_profit_percentage_header"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        android:text="Kâr (%) :"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_profit_percentage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_date"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_profit_header" />
+
+    <TextView
+        android:id="@+id/text_view_cost"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_total"
+
+        app:layout_constraintEnd_toEndOf="@+id/text_view_symbol"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_cost_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity"
+        tools:text="10000" />
+
+    <TextView
+        android:id="@+id/text_view_total"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_profit"
+
+        app:layout_constraintEnd_toEndOf="@+id/text_view_symbol"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_total_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_cost"
+        tools:text="20000" />
+
+    <TextView
+        android:id="@+id/text_view_profit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_profit_percentage"
+
+        app:layout_constraintEnd_toEndOf="@+id/text_view_symbol"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_profit_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_total"
+        tools:text="10000" />
+
+    <TextView
+        android:id="@+id/text_view_profit_percentage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="start|center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="@+id/text_view_symbol"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_profit_percentage_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_profit"
+        tools:text="100" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

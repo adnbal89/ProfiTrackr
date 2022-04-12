@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="8dp"
+    android:paddingBottom="550dp">
+
+
+    <EditText
+        android:id="@+id/edit_text_cost"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        android:ems="10"
+        android:gravity="start|center_vertical"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/edit_text_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_edit_cost_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
+
+    <EditText
+        android:id="@+id/edit_text_date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        android:ems="10"
+        android:gravity="start|center_vertical"
+        android:inputType="datetime"
+        app:layout_constraintBottom_toTopOf="@+id/button_sell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_edit_date_header"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_cost" />
+
+    <TextView
+        android:id="@+id/text_view_symbol"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="SYMBOL"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_edit_quantity_header"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        android:gravity="start|center_vertical"
+        android:text="Adet :"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_edit_price_header"
+        app:layout_constraintEnd_toStartOf="@+id/edit_text_quantity"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
+
+    <TextView
+        android:id="@+id/text_view_edit_price_header"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        android:gravity="start|center_vertical"
+        android:text="Fiyat :"
+        app:layout_constraintBottom_toTopOf="@+id/button_buy"
+        app:layout_constraintEnd_toStartOf="@+id/edit_text_price"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_edit_quantity_header" />
+
+    <TextView
+        android:id="@+id/text_view_edit_cost_header"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:gravity="start|center_vertical"
+        android:text="Maliyet :"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_edit_date_header"
+        app:layout_constraintEnd_toStartOf="@+id/edit_text_cost"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/edit_text_quantity"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
+
+    <TextView
+        android:id="@+id/text_view_edit_date_header"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:gravity="start|center_vertical"
+        android:text="Tarih :"
+        app:layout_constraintBottom_toTopOf="@+id/button_sell"
+        app:layout_constraintEnd_toStartOf="@+id/edit_text_date"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/edit_text_price"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_edit_cost_header" />
+
+    <EditText
+        android:id="@+id/edit_text_quantity"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        android:ems="10"
+        android:gravity="start|center_vertical"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/edit_text_price"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_edit_cost_header"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_edit_quantity_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
+
+    <EditText
+        android:id="@+id/edit_text_price"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        android:ems="10"
+        android:gravity="start|center_vertical"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/button_buy"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_edit_date_header"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/text_view_edit_price_header"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_quantity" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_buy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="AL"
+        app:backgroundTint="#4CC551"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_edit_date_header"
+
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_sell"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="SAT"
+        app:backgroundTint="#C62121"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_buy" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
