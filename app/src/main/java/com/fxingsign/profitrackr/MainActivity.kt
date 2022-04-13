@@ -1,12 +1,13 @@
-package com.fxingsign.profitrackr.presentation
+package com.fxingsign.profitrackr
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.ActivityMainBinding
 import com.fxingsign.profitrackr.presentation.portfolio_listing.PortfolioListFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
