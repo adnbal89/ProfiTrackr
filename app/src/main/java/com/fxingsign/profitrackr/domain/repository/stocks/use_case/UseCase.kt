@@ -1,4 +1,4 @@
-package com.fxingsign.profitrackr.domain.use_case
+package com.fxingsign.profitrackr.domain.repository.stocks.use_case
 
 import com.fxingsign.profitrackr.domain.functional.Either
 import com.fxingsign.profitrackr.domain.functional.exception.Failure

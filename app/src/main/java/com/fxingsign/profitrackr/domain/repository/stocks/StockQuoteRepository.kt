@@ -1,4 +1,4 @@
-package com.fxingsign.profitrackr.domain.repository
+package com.fxingsign.profitrackr.domain.repository.stocks
 
 import com.fxingsign.profitrackr.data.remote.dto.StockQuoteDto
 

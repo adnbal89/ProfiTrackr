@@ -1,3 +1,4 @@
 # ProfiTrackr
 
-ProfiTrackr is ideal to track your portfolio against various financial phenomenons (e.g. Inflation, foreign currencies)
+ProfiTrackr is ideal to track your portfolio against various financial phenomenons (e.g. Inflation,
+foreign currencies)

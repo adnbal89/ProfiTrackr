@@ -1,5 +1,10 @@
-package com.fxingsign.profitrackr.domain.model
+package com.fxingsign.profitrackr.domain.repository.stocks.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+
+@Parcelize
 data class StockQuote(
     val avgVolume: Int,
     val change: Double,
@@ -23,4 +28,4 @@ data class StockQuote(
     val volume: Int,
     val yearHigh: Double,
     val yearLow: Double
-)
+) : Parcelable

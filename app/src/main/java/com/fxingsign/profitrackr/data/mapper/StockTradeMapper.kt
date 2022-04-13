@@ -1,7 +1,7 @@
 package com.fxingsign.profitrackr.data.mapper
 
 import com.fxingsign.profitrackr.data.local.entity.StockTradeEntity
-import com.fxingsign.profitrackr.domain.model.StockTrade
+import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 
 fun StockTradeEntity.toStockTrade(): StockTrade {
     return StockTrade(

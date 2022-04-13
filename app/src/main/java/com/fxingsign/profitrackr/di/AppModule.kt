@@ -1,6 +1,8 @@
 package com.fxingsign.profitrackr.di
 
 import com.fxingsign.profitrackr.data.remote.StockQuoteApi
+import com.fxingsign.profitrackr.data.repository.StockTradeRepositoryImpl
+import com.fxingsign.profitrackr.domain.repository.stocks.StockTradeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,6 +41,12 @@ object AppModule {
     @Singleton
     fun provideStockQuoteApi(retrofit: Retrofit): StockQuoteApi {
         return retrofit.create(StockQuoteApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideStockTradeRepository(): StockTradeRepository {
+        return StockTradeRepositoryImpl()
     }
 
 }

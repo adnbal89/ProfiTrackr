@@ -1,7 +1,7 @@
-package com.fxingsign.profitrackr.domain.use_case.get_stock_quote
+package com.fxingsign.profitrackr.domain.repository.stocks.use_case
 
-import com.fxingsign.profitrackr.domain.model.StockQuote
-import com.fxingsign.profitrackr.domain.repository.StockQuoteRepository
+import com.fxingsign.profitrackr.domain.repository.stocks.StockQuoteRepository
+import com.fxingsign.profitrackr.domain.repository.stocks.model.StockQuote
 import com.fxingsign.profitrackr.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

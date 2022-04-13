@@ -2,7 +2,7 @@ package com.fxingsign.profitrackr.data.repository
 
 import com.fxingsign.profitrackr.data.remote.StockQuoteApi
 import com.fxingsign.profitrackr.data.remote.dto.StockQuoteDto
-import com.fxingsign.profitrackr.domain.repository.StockQuoteRepository
+import com.fxingsign.profitrackr.domain.repository.stocks.StockQuoteRepository
 import javax.inject.Inject
 
 class StockQuoteRepositoryImpl @Inject constructor(
