@@ -48,14 +48,22 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideStockTradeRepository(): StockTradeRepository {
-        return StockTradeRepositoryImpl()
+    fun provideStockTradeRepository(
+        stockQuoteApi: StockQuoteApi,
+        database: StockTradeDatabase
+    ): StockTradeRepository {
+        return StockTradeRepositoryImpl(stockQuoteApi = stockQuoteApi, db = database)
     }
 
     @Provides
     @Singleton
     fun provideStockTradeDatabase(app: Application) =
-        Room.databaseBuilder(app, StockTradeDatabase::class.java, "profitrackr.db").build()
+        Room.databaseBuilder(
+            app,
+            StockTradeDatabase::class.java,
+            "profitrackr.db"
+        )
+            .fallbackToDestructiveMigration().build()
 
 
 }

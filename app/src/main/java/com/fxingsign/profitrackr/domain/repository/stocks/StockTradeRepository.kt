@@ -7,5 +7,7 @@ import com.fxingsign.profitrackr.domain.repository.stocks.use_case.UseCase.None
 
 interface StockTradeRepository {
 
-    suspend fun insertStockTradeToDatabase(stockTrade: StockTrade): Either<Failure, None>
+    suspend fun insertStockTradeToDatabase(
+        stockTrade: StockTrade
+    ): Either<Failure, None>
 }
