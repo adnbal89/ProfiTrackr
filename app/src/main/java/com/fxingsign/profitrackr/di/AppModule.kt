@@ -1,5 +1,8 @@
 package com.fxingsign.profitrackr.di
 
+import android.app.Application
+import androidx.room.Room
+import com.fxingsign.profitrackr.data.local.database.StockTradeDatabase
 import com.fxingsign.profitrackr.data.remote.StockQuoteApi
 import com.fxingsign.profitrackr.data.repository.StockTradeRepositoryImpl
 import com.fxingsign.profitrackr.domain.repository.stocks.StockTradeRepository
@@ -48,5 +51,11 @@ object AppModule {
     fun provideStockTradeRepository(): StockTradeRepository {
         return StockTradeRepositoryImpl()
     }
+
+    @Provides
+    @Singleton
+    fun provideStockTradeDatabase(app: Application) =
+        Room.databaseBuilder(app, StockTradeDatabase::class.java, "profitrackr.db").build()
+
 
 }
