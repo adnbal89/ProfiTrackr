@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.fxingsign.profitrackr.databinding.ActivityMainBinding
-import com.fxingsign.profitrackr.presentation.portfolio_listing.PortfolioListFragment
+import com.fxingsign.profitrackr.presentation.stock_trade.StockTradeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -12,14 +12,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var portfolioListFragment: PortfolioListFragment
+    private lateinit var stockTradeFragment: StockTradeFragment
 
     private var selectedIndex = 0
     private val selectedFragment get() = fragments[selectedIndex]
 
     private val fragments: Array<Fragment>
         get() = arrayOf(
-            portfolioListFragment
+            stockTradeFragment
         )
 
     private fun selectFragment(selectedFragment: Fragment) {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         transaction.commit()
         title = when (selectedFragment) {
-            is PortfolioListFragment -> "Portfolyo Yönetimi"
+            is StockTradeFragment -> "Hisse Al/Sat"
             else -> ""
         }
     }
@@ -46,14 +46,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-            portfolioListFragment = PortfolioListFragment()
+            stockTradeFragment = StockTradeFragment()
 
             supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, portfolioListFragment, TAG_PORTFOLIO_LIST_FRAGMENT)
+                .add(R.id.fragment_container, stockTradeFragment, TAG_PORTFOLIO_LIST_FRAGMENT)
                 .commit()
         } else {
-            portfolioListFragment =
-                supportFragmentManager.findFragmentByTag(TAG_PORTFOLIO_LIST_FRAGMENT) as PortfolioListFragment
+            stockTradeFragment =
+                supportFragmentManager.findFragmentByTag(TAG_STOCK_TRADE_FRAGMENT) as StockTradeFragment
 
             selectedIndex = savedInstanceState.getInt(KEY_SELECTED_INDEX, 0)
         }
@@ -69,4 +69,6 @@ class MainActivity : AppCompatActivity() {
 }
 
 private const val TAG_PORTFOLIO_LIST_FRAGMENT = "TAG_PORTFOLIO_LIST_FRAGMENT"
+private const val TAG_STOCK_TRADE_FRAGMENT = "TAG_STOCK_TRADE_FRAGMENT"
+
 private const val KEY_SELECTED_INDEX = "KEY_SELECTED_INDEX"

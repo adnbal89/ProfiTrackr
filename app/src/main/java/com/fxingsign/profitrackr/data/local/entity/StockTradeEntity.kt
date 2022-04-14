@@ -10,6 +10,6 @@ data class StockTradeEntity(
     @PrimaryKey val symbol: String,
     val quantity: Int,
     val buyPrice: Double,
-    val date: LocalDateTime,
+    val date: String,
     val tradeType: String
 )
