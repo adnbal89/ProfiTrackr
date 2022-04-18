@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         transaction.commit()
         title = when (selectedFragment) {
-            is StockTradeHistoryFragment -> "Hisse Al/Sat"
+            is StockTradeHistoryFragment -> "Hisse Geçmişi"
             else -> ""
         }
     }
@@ -52,12 +52,12 @@ class MainActivity : AppCompatActivity() {
                 .add(
                     R.id.fragment_container,
                     stockTradeHistoryFragment,
-                    TAG_PORTFOLIO_LIST_FRAGMENT
+                    TAG_STOCK_TRADE_HISTORY_FRAGMENT
                 )
                 .commit()
         } else {
             stockTradeHistoryFragment =
-                supportFragmentManager.findFragmentByTag(TAG_STOCK_TRADE_FRAGMENT) as StockTradeHistoryFragment
+                supportFragmentManager.findFragmentByTag(TAG_STOCK_TRADE_HISTORY_FRAGMENT) as StockTradeHistoryFragment
 
             selectedIndex = savedInstanceState.getInt(KEY_SELECTED_INDEX, 0)
         }
@@ -73,6 +73,6 @@ class MainActivity : AppCompatActivity() {
 }
 
 private const val TAG_PORTFOLIO_LIST_FRAGMENT = "TAG_PORTFOLIO_LIST_FRAGMENT"
-private const val TAG_STOCK_TRADE_FRAGMENT = "TAG_STOCK_TRADE_FRAGMENT"
+private const val TAG_STOCK_TRADE_HISTORY_FRAGMENT = "TAG_STOCK_TRADE_HISTORY_FRAGMENT"
 
 private const val KEY_SELECTED_INDEX = "KEY_SELECTED_INDEX"
