@@ -15,11 +15,12 @@
             android:id="@+id/text_view_stock_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="#C8DAEC"
-            android:gravity="center"
-            android:textStyle="bold"
             android:layout_marginBottom="1dp"
-            android:text="ASELS"/>
+            android:background="#C8DAEC"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="ASELS"
+            android:textStyle="bold" />
 
         <include
             android:id="@+id/include"

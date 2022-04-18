@@ -18,7 +18,7 @@ import javax.inject.Inject
 class StockTradeHistoryViewModel @Inject constructor(
     private val getStockTradeHistoryUseCase: GetStockTradeHistoryUseCase
 ) : BaseViewModel() {
-    val TAG = "buy"
+    val TAG = "StockTradeHistoryViewModel"
 
     private val _stockTrades: MutableLiveData<List<StockTrade>> = MutableLiveData()
     val stockTrades: LiveData<List<StockTrade>> = _stockTrades
@@ -33,25 +33,8 @@ class StockTradeHistoryViewModel @Inject constructor(
 
         viewModelScope.launch {
             stockTrades.collect {
-                Log.d("buy", it.forEach {
-                    Log.d("buy", it.quantity.toString())
-                }.toString())
-
-            }
-        }
-
-        viewModelScope.launch {
-            stockTrades.collect {
                 _stockTrades.value = it
-                _stockTrades.value?.forEach {
-                    Log.d("buy", "stockTrade value = " + it.symbol)
-                }
-
             }
-
-
         }
-
-
     }
 }

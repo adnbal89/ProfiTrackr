@@ -1,6 +1,5 @@
 package com.fxingsign.profitrackr.data.repository
 
-import android.util.Log
 import com.fxingsign.profitrackr.data.local.database.StockTradeDatabase
 import com.fxingsign.profitrackr.data.mapper.toStockTrade
 import com.fxingsign.profitrackr.data.mapper.toStockTradeEntity
@@ -37,9 +36,7 @@ class StockTradeRepositoryImpl @Inject constructor(
 
                 Either.Right(stockHistList
                     .map { list ->
-                        Log.d("buy", list.size.toString())
                         list.map {
-                            Log.d("buy", it.symbol)
                             it.toStockTrade()
                         }
                     })

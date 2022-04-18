@@ -1,7 +1,6 @@
 package com.fxingsign.profitrackr.presentation.ui.stock_trade
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history) {
-    val TAG = "buy"
+    val TAG = "StockTradeHistoryFragment"
     private val viewModel: StockTradeHistoryViewModel by viewModels()
     private val viewModel2: StockTradeViewModel by viewModels()
 
@@ -35,7 +34,6 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
         super.onCreate(savedInstanceState)
 
         with(viewModel) {
-            Log.d("buy", "with(viewModel)")
             observe(stockTrades, ::renderStockTradeHistoryList)
             failure(failure, ::handleFailure)
         }
@@ -54,6 +52,24 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
             }
         }
 
+        insertCoupleOfDbItems()
+
+        loadStockTradeHistory()
+    }
+
+    private fun loadStockTradeHistory() {
+        viewModel.getStockTradeHistory()
+    }
+
+    private fun renderStockTradeHistoryList(stockTradeHistory: List<StockTrade>?) {
+        stockTradeHistoryAdapter.submitList(stockTradeHistory)
+    }
+
+    private fun handleFailure(failure: Failure?) {
+
+    }
+
+    private fun insertCoupleOfDbItems() {
         viewModel2.insertStockTrade(
             StockTrade(
                 "ASELS",
@@ -63,25 +79,51 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
                 "buy"
             )
         )
-
-        loadStockTradeHistory()
-    }
-
-    private fun loadStockTradeHistory() {
-        Log.d("buy", "loadStockTradeHistory")
-        viewModel.getStockTradeHistory()
-    }
-
-    private fun renderStockTradeHistoryList(stockTradeHistory: List<StockTrade>?) {
-        Log.d("buy", "renderStockTradeHistoryList")
-        stockTradeHistory?.forEach {
-            Log.d("buy", it.buyPrice.toString())
-        }
-        stockTradeHistoryAdapter.submitList(stockTradeHistory)
-    }
-
-    private fun handleFailure(failure: Failure?) {
-
+        viewModel2.insertStockTrade(
+            StockTrade(
+                "ISGYO",
+                1500,
+                23.5,
+                "14.04.2022",
+                "buy"
+            )
+        )
+        viewModel2.insertStockTrade(
+            StockTrade(
+                "ISCTR",
+                1500,
+                23.5,
+                "14.04.2022",
+                "buy"
+            )
+        )
+        viewModel2.insertStockTrade(
+            StockTrade(
+                "KARTN",
+                1500,
+                23.5,
+                "14.04.2022",
+                "sell"
+            )
+        )
+        viewModel2.insertStockTrade(
+            StockTrade(
+                "YKBNK",
+                1500,
+                23.5,
+                "14.04.2022",
+                "buy"
+            )
+        )
+        viewModel2.insertStockTrade(
+            StockTrade(
+                "GARAN",
+                1500,
+                23.5,
+                "14.04.2022",
+                "sell"
+            )
+        )
     }
 
 }

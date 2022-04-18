@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class StockTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trade) {
 
     private val viewModel: StockTradeViewModel by viewModels()
-    val TAG = "Buy"
+    val TAG = "StockTradeFragment"
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
