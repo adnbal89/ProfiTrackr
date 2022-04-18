@@ -1,4 +1,4 @@
-package com.fxingsign.profitrackr.domain.functional.exception
+package com.fxingsign.profitrackr.util.functional.exception
 
 /**
  * Base Class for handling errors/failures/exceptions.

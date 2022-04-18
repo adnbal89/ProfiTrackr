@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ProfiTrackr</string>
     <string name="retry">Retry</string>
+    <string name="buy_sell">Trade</string>
+    <string name="date">Date</string>
+    <string name="lot">Lot</string>
+    <string name="price">Price</string>
+    <string name="cost">Cost</string>
 </resources>

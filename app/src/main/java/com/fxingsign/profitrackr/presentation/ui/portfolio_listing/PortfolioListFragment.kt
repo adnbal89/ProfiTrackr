@@ -1,16 +1,16 @@
-package com.fxingsign.profitrackr.presentation.portfolio_listing
+package com.fxingsign.profitrackr.presentation.ui.portfolio_listing
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.fxingsign.profitrackr.R
-import com.fxingsign.profitrackr.databinding.FragmentPortfolioListBinding
+import com.fxingsign.profitrackr.databinding.FragmentStockListBinding
 
-class PortfolioListFragment : Fragment(R.layout.fragment_portfolio_list) {
+class PortfolioListFragment : Fragment(R.layout.fragment_stock_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentPortfolioListBinding.bind(view)
+        val binding = FragmentStockListBinding.bind(view)
         binding.apply {
 
         }

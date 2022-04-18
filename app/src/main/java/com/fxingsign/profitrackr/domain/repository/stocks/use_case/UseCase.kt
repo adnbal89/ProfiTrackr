@@ -1,7 +1,7 @@
 package com.fxingsign.profitrackr.domain.repository.stocks.use_case
 
-import com.fxingsign.profitrackr.domain.functional.Either
-import com.fxingsign.profitrackr.domain.functional.exception.Failure
+import com.fxingsign.profitrackr.util.functional.Either
+import com.fxingsign.profitrackr.util.functional.exception.Failure
 import kotlinx.coroutines.*
 
 /**

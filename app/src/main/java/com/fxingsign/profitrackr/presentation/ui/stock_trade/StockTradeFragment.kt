@@ -1,4 +1,4 @@
-package com.fxingsign.profitrackr.presentation.stock_trade
+package com.fxingsign.profitrackr.presentation.ui.stock_trade
 
 import android.os.Bundle
 import android.util.Log
@@ -6,12 +6,12 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fxingsign.profitrackr.R
-import com.fxingsign.profitrackr.databinding.FragmentStockTradeBinding
+import com.fxingsign.profitrackr.databinding.FragmentAddEditStockTradeBinding
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class StockTradeFragment : Fragment(R.layout.fragment_stock_trade) {
+class StockTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trade) {
 
     private val viewModel: StockTradeViewModel by viewModels()
     val TAG = "Buy"
@@ -20,7 +20,7 @@ class StockTradeFragment : Fragment(R.layout.fragment_stock_trade) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentStockTradeBinding.bind(view)
+        val binding = FragmentAddEditStockTradeBinding.bind(view)
         binding.apply {
 
         }

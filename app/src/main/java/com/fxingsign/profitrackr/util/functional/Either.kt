@@ -1,4 +1,4 @@
-package com.fxingsign.profitrackr.domain.functional
+package com.fxingsign.profitrackr.util.functional
 
 
 /**

@@ -1,4 +1,4 @@
-package com.fxingsign.profitrackr.presentation.stock_trade
+package com.fxingsign.profitrackr.presentation.ui.stock_trade
 
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.InsertStockTradeUseCase

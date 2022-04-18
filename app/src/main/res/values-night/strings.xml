@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="retry">Retry</string>
+    <string name="buy_sell">Buy / Sell</string>
+    <string name="date">Date</string>
+    <string name="price">Price</string>
 </resources>

@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.fxingsign.profitrackr.databinding.ActivityMainBinding
-import com.fxingsign.profitrackr.presentation.stock_trade.StockTradeFragment
+import com.fxingsign.profitrackr.presentation.ui.stock_trade.StockTradeHistoryFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -12,14 +12,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var stockTradeFragment: StockTradeFragment
+    private lateinit var stockTradeHistoryFragment: StockTradeHistoryFragment
 
     private var selectedIndex = 0
     private val selectedFragment get() = fragments[selectedIndex]
 
     private val fragments: Array<Fragment>
         get() = arrayOf(
-            stockTradeFragment
+            stockTradeHistoryFragment
         )
 
     private fun selectFragment(selectedFragment: Fragment) {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         transaction.commit()
         title = when (selectedFragment) {
-            is StockTradeFragment -> "Hisse Al/Sat"
+            is StockTradeHistoryFragment -> "Hisse Al/Sat"
             else -> ""
         }
     }
@@ -46,14 +46,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (savedInstanceState == null) {
-            stockTradeFragment = StockTradeFragment()
+            stockTradeHistoryFragment = StockTradeHistoryFragment()
 
             supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, stockTradeFragment, TAG_PORTFOLIO_LIST_FRAGMENT)
+                .add(
+                    R.id.fragment_container,
+                    stockTradeHistoryFragment,
+                    TAG_PORTFOLIO_LIST_FRAGMENT
+                )
                 .commit()
         } else {
-            stockTradeFragment =
-                supportFragmentManager.findFragmentByTag(TAG_STOCK_TRADE_FRAGMENT) as StockTradeFragment
+            stockTradeHistoryFragment =
+                supportFragmentManager.findFragmentByTag(TAG_STOCK_TRADE_FRAGMENT) as StockTradeHistoryFragment
 
             selectedIndex = savedInstanceState.getInt(KEY_SELECTED_INDEX, 0)
         }
