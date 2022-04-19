@@ -52,7 +52,7 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
             }
         }
 
-        insertCoupleOfDbItems()
+        //insertCoupleOfDbItems()
 
         loadStockTradeHistory()
     }

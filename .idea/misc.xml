@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/layout/fragment_stock_trade_history.xml" value="0.16455696202531644" />
         <entry key="app/src/main/res/layout/fragment_stocks.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header_layout.xml" value="0.75" />
-        <entry key="app/src/main/res/layout/item_stock.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_stock.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_stock_trade_history.xml" value="0.5" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.14907407407407408" />
       </map>

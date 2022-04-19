@@ -17,9 +17,9 @@
             android:layout_height="40dp"
             android:layout_marginBottom="1dp"
             android:background="#C8DAEC"
-            android:textColor="@color/white"
             android:gravity="center"
             android:text="ASELS"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <include
@@ -27,9 +27,9 @@
             layout="@layout/header_layout"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginBottom="1dp"
             android:layout_below="@id/text_view_stock_name"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="1dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_stock_trades"

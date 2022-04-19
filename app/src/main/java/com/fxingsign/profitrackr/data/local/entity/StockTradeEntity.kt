@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "stock_trade_history")
 data class StockTradeEntity(
-    @PrimaryKey val symbol: String,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val symbol: String,
     val quantity: Int,
     val buyPrice: Double,
     val date: String,
