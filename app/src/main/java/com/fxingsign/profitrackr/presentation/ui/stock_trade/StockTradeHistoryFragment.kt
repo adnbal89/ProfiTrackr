@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentStockTradeHistoryBinding
+import com.fxingsign.profitrackr.domain.repository.stocks.dto.StockTradeDto
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.presentation.ui.stock_trade.adapters.StockTradeHistoryListAdapter
 import com.fxingsign.profitrackr.util.failure
@@ -71,57 +72,57 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
 
     private fun insertCoupleOfDbItems() {
         viewModel2.insertStockTrade(
-            StockTrade(
-                "ASELS",
-                1500,
-                23.5,
-                "14.04.2022",
-                "buy"
+            StockTradeDto(
+                symbol = "ASELS",
+                quantity = 1500,
+                buyPrice = 23.5,
+                date = "14.04.2022",
+                tradeType = "buy"
             )
         )
         viewModel2.insertStockTrade(
-            StockTrade(
-                "ISGYO",
-                1500,
-                23.5,
-                "14.04.2022",
-                "buy"
+            StockTradeDto(
+                symbol = "ISGYO",
+                quantity = 1500,
+                buyPrice = 23.5,
+                date = "14.04.2022",
+                tradeType = "buy"
             )
         )
         viewModel2.insertStockTrade(
-            StockTrade(
-                "ISCTR",
-                1500,
-                23.5,
-                "14.04.2022",
-                "buy"
+            StockTradeDto(
+                symbol = "ISCTR",
+                quantity = 1500,
+                buyPrice = 23.5,
+                date = "14.04.2022",
+                tradeType = "sell"
             )
         )
         viewModel2.insertStockTrade(
-            StockTrade(
-                "KARTN",
-                1500,
-                23.5,
-                "14.04.2022",
-                "sell"
+            StockTradeDto(
+                symbol = "KARTN",
+                quantity = 1500,
+                buyPrice = 23.5,
+                date = "14.04.2022",
+                tradeType = "buy"
             )
         )
         viewModel2.insertStockTrade(
-            StockTrade(
-                "YKBNK",
-                1500,
-                23.5,
-                "14.04.2022",
-                "buy"
+            StockTradeDto(
+                symbol = "YKBNK",
+                quantity = 1500,
+                buyPrice = 23.5,
+                date = "14.04.2022",
+                tradeType = "sell"
             )
         )
         viewModel2.insertStockTrade(
-            StockTrade(
-                "GARAN",
-                1500,
-                23.5,
-                "14.04.2022",
-                "sell"
+            StockTradeDto(
+                symbol = "GARAN",
+                quantity = 1500,
+                buyPrice = 23.5,
+                date = "14.04.2022",
+                tradeType = "buy"
             )
         )
     }

@@ -1,11 +1,10 @@
-package com.fxingsign.profitrackr.domain.repository.stocks.model
+package com.fxingsign.profitrackr.domain.repository.stocks.dto
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class StockTrade(
-    val id: Int,
+data class StockTradeDto(
     val symbol: String,
     val quantity: Int,
     val buyPrice: Double,

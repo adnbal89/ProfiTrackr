@@ -7,5 +7,5 @@ import javax.inject.Inject
 @HiltViewModel
 class PortfolioListViewModel @Inject constructor(
 
-): BaseViewModel(){
+) : BaseViewModel() {
 }

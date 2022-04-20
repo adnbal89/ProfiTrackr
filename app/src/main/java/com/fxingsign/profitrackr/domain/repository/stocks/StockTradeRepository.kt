@@ -1,5 +1,6 @@
 package com.fxingsign.profitrackr.domain.repository.stocks
 
+import com.fxingsign.profitrackr.domain.repository.stocks.dto.StockTradeDto
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.UseCase.None
 import com.fxingsign.profitrackr.util.functional.Either
@@ -9,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface StockTradeRepository {
 
     suspend fun insertStockTradeToDatabase(
-        stockTrade: StockTrade
+        stockTradeDto: StockTradeDto
     ): Either<Failure, None>
 
     fun getStockTradeHistory()

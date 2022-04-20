@@ -1,9 +1,9 @@
 package com.fxingsign.profitrackr.data.local.entity
 
 
-data class StockTotalEntity(
+data class StockPortfolioEntity(
     val symbol: String,
     val totalQty: Int,
-    val avgCost: Double,
+    val totalCost: Double,
     val avgPrice: Double
 )

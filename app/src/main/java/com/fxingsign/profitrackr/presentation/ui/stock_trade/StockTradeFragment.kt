@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentAddEditStockTradeBinding
-import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +25,7 @@ class StockTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trade) {
         }
         binding.buttonBuy.setOnClickListener {
             Log.d(TAG, "Buy CLicked")
-            viewModel.insertStockTrade(
+            /*viewModel.insertStockTrade(
                 StockTrade(
                     "ASELS",
                     1500,
@@ -34,7 +33,7 @@ class StockTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trade) {
                     "14.04.2022",
                     "buy"
                 )
-            )
+            )*/
         }
     }
 }

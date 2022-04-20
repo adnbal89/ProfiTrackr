@@ -1,8 +1,8 @@
 package com.fxingsign.profitrackr.domain.repository.stocks.model
 
-data class StockTotal(
+data class StockPortfolio(
     val symbol: String,
     val totalQty: Int,
-    val avgCost: Double,
+    val totalCost: Double,
     val avgPrice: Double
 )

@@ -13,6 +13,7 @@ interface StockQuoteApi {
         @Query("apikey") apiKey: String = API_KEY
     ): StockQuoteDto
 
+
     companion object {
         const val API_KEY = "389d84ea6dfffb0fe7d772a23fafd375"
         const val BASE_URL = "https://financialmodelingprep.com"

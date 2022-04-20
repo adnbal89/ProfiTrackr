@@ -5,6 +5,7 @@ import com.fxingsign.profitrackr.data.mapper.toStockTrade
 import com.fxingsign.profitrackr.data.mapper.toStockTradeEntity
 import com.fxingsign.profitrackr.data.remote.StockQuoteApi
 import com.fxingsign.profitrackr.domain.repository.stocks.StockTradeRepository
+import com.fxingsign.profitrackr.domain.repository.stocks.dto.StockTradeDto
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.UseCase.None
 import com.fxingsign.profitrackr.util.functional.Either
@@ -23,8 +24,8 @@ class StockTradeRepositoryImpl @Inject constructor(
 
     private val dao = db.dao
 
-    override suspend fun insertStockTradeToDatabase(stockTrade: StockTrade): Either<Failure, None> {
-        dao.insertStockTrade(stockTrade.toStockTradeEntity())
+    override suspend fun insertStockTradeToDatabase(stockTradeDto: StockTradeDto): Either<Failure, None> {
+        dao.insertStockTrade(stockTradeDto.toStockTradeEntity())
         return Either.Right(None())
     }
 

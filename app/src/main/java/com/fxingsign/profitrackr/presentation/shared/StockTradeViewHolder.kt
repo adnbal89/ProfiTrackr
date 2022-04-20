@@ -33,10 +33,7 @@ class StockTradeViewHolder(
                 }
             }
         }
-
     }
-
-
 }
 
 private fun setViewBackgroundColor(
