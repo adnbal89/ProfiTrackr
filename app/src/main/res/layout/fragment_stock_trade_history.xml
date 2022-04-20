@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#BABABA"
+        android:background="@color/gray"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/include"
-            android:background="#BABABA" />
+            android:background="@color/gray" />
 
         <TextView
             android:id="@+id/text_view_error"

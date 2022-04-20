@@ -19,7 +19,7 @@ interface StockPortfolioDao {
     @Query(
         "SELECT SUM(quantity) as totalQty," +
                 " symbol," +
-                " SUM(quantity*buyPrice) as avgCost," +
+                " SUM(quantity*buyPrice) as totalCost," +
                 " ROUND(SUM(quantity*buyPrice)/SUM(quantity),2) avgPrice" +
                 " FROM stock_trade_history GROUP BY symbol"
     )

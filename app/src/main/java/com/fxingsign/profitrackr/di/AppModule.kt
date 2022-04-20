@@ -2,9 +2,11 @@ package com.fxingsign.profitrackr.di
 
 import android.app.Application
 import androidx.room.Room
-import com.fxingsign.profitrackr.data.local.database.StockTradeDatabase
+import com.fxingsign.profitrackr.data.local.database.StockDatabase
 import com.fxingsign.profitrackr.data.remote.StockQuoteApi
+import com.fxingsign.profitrackr.data.repository.StockPortfolioRepositoryImpl
 import com.fxingsign.profitrackr.data.repository.StockTradeRepositoryImpl
+import com.fxingsign.profitrackr.domain.repository.stocks.StockPortfolioRepository
 import com.fxingsign.profitrackr.domain.repository.stocks.StockTradeRepository
 import dagger.Module
 import dagger.Provides
@@ -50,9 +52,18 @@ object AppModule {
     @Singleton
     fun provideStockTradeRepository(
         stockQuoteApi: StockQuoteApi,
-        database: StockTradeDatabase
+        database: StockDatabase
     ): StockTradeRepository {
         return StockTradeRepositoryImpl(stockQuoteApi = stockQuoteApi, db = database)
+    }
+
+    @Provides
+    @Singleton
+    fun provideStockPortfolioRepository(
+        stockQuoteApi: StockQuoteApi,
+        database: StockDatabase
+    ): StockPortfolioRepository {
+        return StockPortfolioRepositoryImpl(stockQuoteApi = stockQuoteApi, db = database)
     }
 
     @Provides
@@ -60,7 +71,7 @@ object AppModule {
     fun provideStockTradeDatabase(app: Application) =
         Room.databaseBuilder(
             app,
-            StockTradeDatabase::class.java,
+            StockDatabase::class.java,
             "profitrackr.db"
         )
             .fallbackToDestructiveMigration().build()

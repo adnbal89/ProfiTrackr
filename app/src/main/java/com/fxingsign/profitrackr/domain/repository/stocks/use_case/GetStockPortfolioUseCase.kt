@@ -7,7 +7,7 @@ import com.fxingsign.profitrackr.util.functional.exception.Failure
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetStockPortfolio @Inject constructor(
+class GetStockPortfolioUseCase @Inject constructor(
     private val stockPortfolioRepository: StockPortfolioRepository
 ) : UseCase<Flow<List<StockPortfolio>>, UseCase.None>() {
 

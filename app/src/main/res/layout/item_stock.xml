@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:layout_margin="8dp"
+    android:background="@color/white"
     android:paddingBottom="8dp">
 
     <TextView
@@ -20,27 +21,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_view_quantity"
+        android:id="@+id/text_view_quantity_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
         android:paddingBottom="8dp"
+
         android:text="Adet : "
         app:layout_constraintEnd_toEndOf="@+id/text_view_symbol"
         app:layout_constraintStart_toStartOf="@+id/text_view_symbol"
         app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
 
     <TextView
+        android:id="@+id/text_view_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_quantity_header"
+        app:layout_constraintStart_toEndOf="@+id/text_view_price_header"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol"
+        app:layout_constraintTop_toTopOf="@+id/text_view_quantity_header" />
+
+
+    <TextView
         android:id="@+id/text_view_price_header"
         android:layout_width="70dp"
         android:layout_height="0dp"
         android:gravity="start|center_vertical"
-
         android:text="Fiyat :"
         app:layout_constraintBottom_toTopOf="@+id/text_view_last_price_header"
         app:layout_constraintEnd_toStartOf="@+id/text_view_price"
         app:layout_constraintHorizontal_bias="0.5"
+
         app:layout_constraintStart_toStartOf="@+id/text_view_symbol"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity_header" />
 
     <TextView
         android:id="@+id/text_view_difference_header"
@@ -91,7 +105,7 @@
         app:layout_constraintEnd_toStartOf="@+id/text_view_cost_header"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/text_view_price_header"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity_header"
         tools:text="10" />
 
     <TextView
@@ -145,7 +159,7 @@
         app:layout_constraintEnd_toStartOf="@+id/text_view_cost"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/text_view_price"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity_header" />
 
     <TextView
         android:id="@+id/text_view_total_header"
@@ -196,7 +210,7 @@
         app:layout_constraintEnd_toEndOf="@+id/text_view_symbol"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/text_view_cost_header"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_quantity_header"
         tools:text="10000" />
 
     <TextView

@@ -1,6 +1,6 @@
 package com.fxingsign.profitrackr.data.repository
 
-import com.fxingsign.profitrackr.data.local.database.StockTradeDatabase
+import com.fxingsign.profitrackr.data.local.database.StockDatabase
 import com.fxingsign.profitrackr.data.mapper.toStockTrade
 import com.fxingsign.profitrackr.data.mapper.toStockTradeEntity
 import com.fxingsign.profitrackr.data.remote.StockQuoteApi
@@ -19,10 +19,10 @@ import javax.inject.Singleton
 @Singleton
 class StockTradeRepositoryImpl @Inject constructor(
     private val stockQuoteApi: StockQuoteApi,
-    private val db: StockTradeDatabase
+    private val db: StockDatabase
 ) : StockTradeRepository {
 
-    private val dao = db.dao
+    private val dao = db.daoStockTrade
 
     override suspend fun insertStockTradeToDatabase(stockTradeDto: StockTradeDto): Either<Failure, None> {
         dao.insertStockTrade(stockTradeDto.toStockTradeEntity())

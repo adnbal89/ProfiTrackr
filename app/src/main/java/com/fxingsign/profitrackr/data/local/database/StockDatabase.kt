@@ -2,6 +2,7 @@ package com.fxingsign.profitrackr.data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.fxingsign.profitrackr.data.local.entity.StockPortfolioDao
 import com.fxingsign.profitrackr.data.local.entity.StockTradeDao
 import com.fxingsign.profitrackr.data.local.entity.StockTradeEntity
 
@@ -9,6 +10,9 @@ import com.fxingsign.profitrackr.data.local.entity.StockTradeEntity
     entities = [StockTradeEntity::class],
     version = 1
 )
-abstract class StockTradeDatabase : RoomDatabase() {
-    abstract val dao: StockTradeDao
+abstract class StockDatabase : RoomDatabase() {
+
+    abstract val daoStockTrade: StockTradeDao
+    abstract val daoStockPortfolio: StockPortfolioDao
+
 }
