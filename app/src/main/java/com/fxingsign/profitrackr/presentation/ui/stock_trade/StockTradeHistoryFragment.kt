@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentStockTradeHistoryBinding
-import com.fxingsign.profitrackr.domain.repository.stocks.dto.StockTradeDto
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
+import com.fxingsign.profitrackr.presentation.ui.add_edit_stock.StockAddEditTradeViewModel
 import com.fxingsign.profitrackr.presentation.ui.stock_trade.adapters.StockTradeHistoryListAdapter
 import com.fxingsign.profitrackr.util.failure
 import com.fxingsign.profitrackr.util.functional.exception.Failure
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history) {
     val TAG = "StockTradeHistoryFragment"
     private val viewModel: StockTradeHistoryViewModel by viewModels()
-    private val viewModel2: StockTradeViewModel by viewModels()
+    private val viewModel2: StockAddEditTradeViewModel by viewModels()
 
     private val stockTradeHistoryAdapter = StockTradeHistoryListAdapter(
         onItemClick = { stockTrade ->
@@ -70,7 +70,7 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
 
     }
 
-    private fun insertCoupleOfDbItems() {
+    /*private fun insertCoupleOfDbItems() {
         viewModel2.insertStockTrade(
             StockTradeDto(
                 symbol = "ASELS",
@@ -125,6 +125,6 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
                 tradeType = "buy"
             )
         )
-    }
+    }*/
 
 }

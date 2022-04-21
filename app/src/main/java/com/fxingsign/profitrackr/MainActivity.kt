@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         transaction.commit()
         title = when (selectedFragment) {
-            is StockPortfolioListFragment -> "Hisse Geçmişi"
+            is StockPortfolioListFragment -> "Hisse Ekle"
             else -> ""
         }
     }
@@ -74,5 +74,7 @@ class MainActivity : AppCompatActivity() {
 
 private const val TAG_PORTFOLIO_LIST_FRAGMENT = "TAG_PORTFOLIO_LIST_FRAGMENT"
 private const val TAG_STOCK_TRADE_HISTORY_FRAGMENT = "TAG_STOCK_TRADE_HISTORY_FRAGMENT"
+private const val TAG_STOCK_ADD_EDIT_TRADE_FRAGMENT = "TAG_STOCK_ADD_EDIT_TRADE_FRAGMENT"
+
 
 private const val KEY_SELECTED_INDEX = "KEY_SELECTED_INDEX"

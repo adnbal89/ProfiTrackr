@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/stockPortfolioListFragment">
+
+    <fragment
+        android:id="@+id/stockPortfolioListFragment"
+        android:name="com.fxingsign.profitrackr.presentation.ui.portfolio_listing.StockPortfolioListFragment"
+        android:label="Portfolio"
+        tools:layout="@layout/fragment_stock_list">
+        <action
+            android:id="@+id/action_stockPortfolioListFragment_to_stockAddEditTradeFragment"
+            app:destination="@id/stockAddEditTradeFragment" />
+        <action
+            android:id="@+id/action_stockPortfolioListFragment_to_stockTradeHistoryFragment"
+            app:destination="@id/stockTradeHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stockAddEditTradeFragment"
+        android:name="com.fxingsign.profitrackr.presentation.ui.add_edit_stock.StockAddEditTradeFragment"
+        android:label="StockAddEditTradeFragment">
+        <argument
+            android:name="stockId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/stockTradeHistoryFragment"
+        android:name="com.fxingsign.profitrackr.presentation.ui.stock_trade.StockTradeHistoryFragment"
+        android:label="StockTradeHistoryFragment">
+        <argument
+            android:name="stockId"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
