@@ -47,4 +47,24 @@ class StockTradeRepositoryImpl @Inject constructor(
             }
         }
     }
+
+
+    override fun getStockTradeHistoryById(stockId: String): Either<Failure, Flow<List<StockTrade>>> {
+        //TODO: network availability check !
+        return when (true) {
+            true -> {
+                val stockHistList = dao.getStockTradeHistoryListById(stockId)
+
+                Either.Right(stockHistList
+                    .map { list ->
+                        list.map {
+                            it.toStockTrade()
+                        }
+                    })
+            }
+            false -> {
+                return Either.Left(Failure.NetworkConnection)
+            }
+        }
+    }
 }

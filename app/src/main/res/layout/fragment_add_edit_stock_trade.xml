@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="250dp"
     android:layout_margin="8dp"
     android:paddingBottom="16dp">
 
@@ -19,16 +19,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/text_view_edit_cost_header"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_symbol" />
 
 
-    <TextView
-        android:id="@+id/text_view_symbol"
+    <EditText
+        android:id="@+id/edit_text_symbol"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_margin="8dp"
-        android:gravity="center"
-        android:text="SYMBOL"
+        android:gravity="start|center_vertical"
+        android:hint="@string/select_stock"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toStartOf="@+id/edit_text_quantity"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_symbol" />
 
     <TextView
         android:id="@+id/text_view_edit_price_header"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toStartOf="@+id/edit_text_cost"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/edit_text_quantity"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_symbol" />
 
     <TextView
         android:id="@+id/text_view_edit_date_header"
@@ -111,7 +111,7 @@
         app:layout_constraintEnd_toStartOf="@+id/text_view_edit_cost_header"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/text_view_edit_quantity_header"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_symbol" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_symbol" />
 
     <EditText
         android:id="@+id/edit_text_price"

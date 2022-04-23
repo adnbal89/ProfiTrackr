@@ -8,7 +8,7 @@ import com.fxingsign.profitrackr.data.local.entity.StockTradeEntity
 
 @Database(
     entities = [StockTradeEntity::class],
-    version = 1
+    version = 2
 )
 abstract class StockDatabase : RoomDatabase() {
 

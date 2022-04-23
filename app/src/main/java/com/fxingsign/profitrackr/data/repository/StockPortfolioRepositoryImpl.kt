@@ -21,11 +21,11 @@ class StockPortfolioRepositoryImpl @Inject constructor(
 
     private val dao = db.daoStockPortfolio
 
-    override suspend fun getStockPortfolio(): Either<Failure, Flow<List<StockPortfolio>>> {
+    override suspend fun getStockPortfolio(searchTerm: String): Either<Failure, Flow<List<StockPortfolio>>> {
         //TODO: network availability check
         return when (true) {
             true -> {
-                val stockStockPortfolioList = dao.getStockPortfolio()
+                val stockStockPortfolioList = dao.getStockPortfolio(searchTerm)
 
                 Either.Right(stockStockPortfolioList
                     .map { list ->

@@ -9,9 +9,9 @@ import javax.inject.Inject
 
 class GetStockPortfolioUseCase @Inject constructor(
     private val stockPortfolioRepository: StockPortfolioRepository
-) : UseCase<Flow<List<StockPortfolio>>, UseCase.None>() {
+) : UseCase<Flow<List<StockPortfolio>>, String>() {
 
-    override suspend fun run(params: None): Either<Failure, Flow<List<StockPortfolio>>> {
-        return stockPortfolioRepository.getStockPortfolio()
+    override suspend fun run(params: String): Either<Failure, Flow<List<StockPortfolio>>> {
+        return stockPortfolioRepository.getStockPortfolio(params)
     }
 }

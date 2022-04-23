@@ -1,4 +1,4 @@
-package com.fxingsign.profitrackr.presentation.ui.stock_trade.adapters
+package com.fxingsign.profitrackr.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

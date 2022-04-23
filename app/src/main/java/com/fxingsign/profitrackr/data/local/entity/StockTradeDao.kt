@@ -24,4 +24,8 @@ interface StockTradeDao {
     @Query("SELECT * FROM stock_trade_history")
     fun getStockTradeHistoryList(): Flow<List<StockTradeEntity>>
 
+    @Query("SELECT * FROM stock_trade_history WHERE symbol =:stockId")
+    fun getStockTradeHistoryListById(stockId: String): Flow<List<StockTradeEntity>>
+
+
 }

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentStockTradeHistoryBinding
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
+import com.fxingsign.profitrackr.presentation.ui.adapters.StockTradeHistoryListAdapter
 import com.fxingsign.profitrackr.presentation.ui.add_edit_stock.StockAddEditTradeViewModel
-import com.fxingsign.profitrackr.presentation.ui.stock_trade.adapters.StockTradeHistoryListAdapter
 import com.fxingsign.profitrackr.util.failure
 import com.fxingsign.profitrackr.util.functional.exception.Failure
 import com.fxingsign.profitrackr.util.observe
@@ -51,15 +51,16 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
                 layoutManager = LinearLayoutManager(requireContext())
                 setHasFixedSize(true)
             }
+            textViewStockName.text = viewModel.stockId
         }
 
         //insertCoupleOfDbItems()
 
-        loadStockTradeHistory()
+        loadStockTradeHistory(viewModel.stockId ?: "")
     }
 
-    private fun loadStockTradeHistory() {
-        viewModel.getStockTradeHistory()
+    private fun loadStockTradeHistory(stockId: String) {
+        viewModel.getStockTradeHistoryById(stockId)
     }
 
     private fun renderStockTradeHistoryList(stockTradeHistory: List<StockTrade>?) {

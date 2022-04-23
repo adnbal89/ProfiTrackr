@@ -21,7 +21,8 @@ interface StockPortfolioDao {
                 " symbol," +
                 " SUM(quantity*buyPrice) as totalCost," +
                 " ROUND(SUM(quantity*buyPrice)/SUM(quantity),2) avgPrice" +
-                " FROM stock_trade_history GROUP BY symbol"
+                " FROM stock_trade_history WHERE symbol " +
+                "LIKE '%' || :searchTerm || '%' GROUP BY symbol"
     )
-    fun getStockPortfolio(): Flow<List<StockPortfolioEntity>>
+    fun getStockPortfolio(searchTerm: String): Flow<List<StockPortfolioEntity>>
 }

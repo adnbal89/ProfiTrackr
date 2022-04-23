@@ -15,4 +15,7 @@ interface StockTradeRepository {
 
     fun getStockTradeHistory()
             : Either<Failure, Flow<List<StockTrade>>>
+
+    fun getStockTradeHistoryById(stockId: String)
+            : Either<Failure, Flow<List<StockTrade>>>
 }

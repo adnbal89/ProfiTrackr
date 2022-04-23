@@ -6,4 +6,13 @@
     <string name="lot">Lot</string>
     <string name="price">Price</string>
     <string name="cost">Cost</string>
+    <string name="sort">Sort</string>
+    <string name="search">Search</string>
+    <string name="add_stock">Add Stock</string>
+    <string name="sort_by_symbol">Sort by symbol</string>
+    <string name="sort_by_date_created">Sort by date created</string>
+    <string name="add_new_stock_trade">Add New Stock</string>
+    <string name="stock_trade_history">Stock Trade History</string>
+    <string name="symbol">Symbol</string>
+    <string name="select_stock">select stock</string>
 </resources>

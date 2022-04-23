@@ -2,7 +2,10 @@ package com.fxingsign.profitrackr
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.fxingsign.profitrackr.databinding.ActivityMainBinding
 import com.fxingsign.profitrackr.presentation.ui.portfolio_listing.StockPortfolioListFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -11,65 +14,27 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     private lateinit var stockPortfolioListFragment: StockPortfolioListFragment
-
-    private var selectedIndex = 0
-    private val selectedFragment get() = fragments[selectedIndex]
-
-    private val fragments: Array<Fragment>
-        get() = arrayOf(
-            stockPortfolioListFragment
-        )
-
-    private fun selectFragment(selectedFragment: Fragment) {
-        var transaction = supportFragmentManager.beginTransaction()
-        fragments.forEachIndexed { index, fragment ->
-            if (selectedFragment == fragment) {
-                transaction = transaction.attach(fragment)
-                selectedIndex = index
-            } else {
-                transaction = transaction.detach(fragment)
-            }
-        }
-
-        transaction.commit()
-        title = when (selectedFragment) {
-            is StockPortfolioListFragment -> "Hisse Ekle"
-            else -> ""
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (savedInstanceState == null) {
-            stockPortfolioListFragment = StockPortfolioListFragment()
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+                as NavHostFragment
 
-            supportFragmentManager.beginTransaction()
-                .add(
-                    R.id.fragment_container,
-                    stockPortfolioListFragment,
-                    TAG_PORTFOLIO_LIST_FRAGMENT
-                )
-                .commit()
-        } else {
-            stockPortfolioListFragment =
-                supportFragmentManager.findFragmentByTag(TAG_PORTFOLIO_LIST_FRAGMENT) as StockPortfolioListFragment
-
-            selectedIndex = savedInstanceState.getInt(KEY_SELECTED_INDEX, 0)
-        }
-
-        selectFragment(selectedFragment)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt(KEY_SELECTED_INDEX, selectedIndex)
+        navController = navHostFragment.findNavController()
+        setupActionBarWithNavController(navController)
 
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
 }
 
 private const val TAG_PORTFOLIO_LIST_FRAGMENT = "TAG_PORTFOLIO_LIST_FRAGMENT"

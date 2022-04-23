@@ -12,12 +12,13 @@
         <entry key="app/src/main/res/layout/fragment_portfolio_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_stock_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_stock_trade.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_stock_trade_history.xml" value="0.16455696202531644" />
+        <entry key="app/src/main/res/layout/fragment_stock_trade_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_stocks.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header_layout.xml" value="0.75" />
         <entry key="app/src/main/res/layout/item_stock.xml" value="0.5214477211796247" />
         <entry key="app/src/main/res/layout/item_stock_trade_history.xml" value="0.5" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/menu/menu_fragment_stock_portfolio_list.xml" value="0.33" />
       </map>
     </option>
   </component>

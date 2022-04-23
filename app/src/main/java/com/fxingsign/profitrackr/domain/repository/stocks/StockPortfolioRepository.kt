@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface StockPortfolioRepository {
 
-    suspend fun getStockPortfolio()
+    suspend fun getStockPortfolio(searchTerm: String)
             : Either<Failure, Flow<List<StockPortfolio>>>
 
 }

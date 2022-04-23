@@ -14,9 +14,9 @@
         <TextView
             android:id="@+id/text_view_stock_name"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="55dp"
             android:layout_marginBottom="1dp"
-            android:background="#C8DAEC"
+            android:background="#3181D1"
             android:gravity="center"
             android:text="ASELS"
             android:textColor="@color/white"
@@ -26,7 +26,7 @@
             android:id="@+id/include"
             layout="@layout/header_layout"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_below="@id/text_view_stock_name"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="1dp" />

@@ -17,21 +17,29 @@
             android:id="@+id/action_stockPortfolioListFragment_to_stockTradeHistoryFragment"
             app:destination="@id/stockTradeHistoryFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/stockAddEditTradeFragment"
         android:name="com.fxingsign.profitrackr.presentation.ui.add_edit_stock.StockAddEditTradeFragment"
-        android:label="StockAddEditTradeFragment">
+        android:label="{title}">
         <argument
             android:name="stockId"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/stockTradeHistoryFragment"
         android:name="com.fxingsign.profitrackr.presentation.ui.stock_trade.StockTradeHistoryFragment"
-        android:label="StockTradeHistoryFragment">
+        android:label="{title}">
         <argument
             android:name="stockId"
+            app:argType="string" />
+        <argument
+            android:name="title"
             app:argType="string" />
     </fragment>
 
