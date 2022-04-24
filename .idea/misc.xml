@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.1" />
         <entry key="..\:/Users/ABAL/AndroidStudioProjects/ProfiTrackr/app/src/main/res/layout/fragment_add_stock_trade.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/ABAL/AndroidStudioProjects/ProfiTrackr/app/src/main/res/layout/fragment_portfolio_list.xml" value="0.1" />
         <entry key="..\:/Users/ABAL/AndroidStudioProjects/ProfiTrackr/app/src/main/res/layout/fragment_stock_trade.xml" value="0.12834224598930483" />

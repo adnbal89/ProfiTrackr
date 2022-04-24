@@ -15,18 +15,19 @@
         android:gravity="start|center_vertical"
         android:inputType="number"
         android:text="0"
-        app:layout_constraintBottom_toTopOf="@+id/edit_text_date"
+        app:layout_constraintBottom_toTopOf="@+id/date_picker_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/text_view_edit_cost_header"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_symbol" />
+        app:layout_constraintTop_toBottomOf="@+id/autocomplete_text_view_symbol" />
 
 
-    <EditText
-        android:id="@+id/edit_text_symbol"
+    <AutoCompleteTextView
+        android:id="@+id/autocomplete_text_view_symbol"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_margin="8dp"
+        android:completionThreshold="0"
         android:gravity="start|center_vertical"
         android:hint="@string/select_stock"
 
@@ -45,7 +46,7 @@
         app:layout_constraintEnd_toStartOf="@+id/edit_text_quantity"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_symbol" />
+        app:layout_constraintTop_toBottomOf="@+id/autocomplete_text_view_symbol" />
 
     <TextView
         android:id="@+id/text_view_edit_price_header"
@@ -71,7 +72,7 @@
         app:layout_constraintEnd_toStartOf="@+id/edit_text_cost"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/edit_text_quantity"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_symbol" />
+        app:layout_constraintTop_toBottomOf="@+id/autocomplete_text_view_symbol" />
 
     <TextView
         android:id="@+id/text_view_edit_date_header"
@@ -81,18 +82,18 @@
         android:gravity="start|center_vertical"
         android:text="Tarih :"
         app:layout_constraintBottom_toTopOf="@+id/button_sell"
-        app:layout_constraintEnd_toStartOf="@+id/edit_text_date"
+        app:layout_constraintEnd_toStartOf="@+id/date_picker_date"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/edit_text_price"
         app:layout_constraintTop_toBottomOf="@+id/text_view_edit_cost_header" />
 
     <EditText
-        android:id="@+id/edit_text_date"
+        android:id="@+id/date_picker_date"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:datePickerMode="calendar"
         android:gravity="start|center_vertical"
-        android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/button_sell"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -111,7 +112,7 @@
         app:layout_constraintEnd_toStartOf="@+id/text_view_edit_cost_header"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/text_view_edit_quantity_header"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_symbol" />
+        app:layout_constraintTop_toBottomOf="@+id/autocomplete_text_view_symbol" />
 
     <EditText
         android:id="@+id/edit_text_price"
@@ -128,10 +129,16 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_buy"
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:text="AL"
+
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:backgroundTint="#4CC551"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/text_view_edit_date_header"
@@ -141,14 +148,18 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_sell"
+        style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:text="SAT"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:backgroundTint="#C62121"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_buy" />
 
