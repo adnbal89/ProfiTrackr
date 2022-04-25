@@ -15,6 +15,7 @@
         android:gravity="start|center_vertical"
         android:inputType="number"
         android:text="0"
+        android:layout_marginStart="20dp"
         app:layout_constraintBottom_toTopOf="@+id/date_picker_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -65,9 +66,10 @@
         android:id="@+id/text_view_edit_cost_header"
         android:layout_width="60dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="0dp"
         android:gravity="start|center_vertical"
         android:text="Maliyet :"
+        app:layout_constraintStart_toStartOf="@id/text_view_edit_date_header"
         app:layout_constraintBottom_toTopOf="@+id/text_view_edit_date_header"
         app:layout_constraintEnd_toStartOf="@+id/edit_text_cost"
         app:layout_constraintHorizontal_bias="0.5"
@@ -87,7 +89,7 @@
         app:layout_constraintStart_toEndOf="@+id/edit_text_price"
         app:layout_constraintTop_toBottomOf="@+id/text_view_edit_cost_header" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/date_picker_date"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -101,11 +103,12 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_text_cost" />
 
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_text_quantity"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
+
         android:gravity="start|center_vertical"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/edit_text_price"
@@ -114,7 +117,7 @@
         app:layout_constraintStart_toEndOf="@+id/text_view_edit_quantity_header"
         app:layout_constraintTop_toBottomOf="@+id/autocomplete_text_view_symbol" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_text_price"
         android:layout_width="0dp"
         android:layout_height="0dp"
