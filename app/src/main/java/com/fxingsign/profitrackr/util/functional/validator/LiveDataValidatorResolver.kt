@@ -1,7 +1,7 @@
 package com.fxingsign.profitrackr.util.functional.validator
 
-class LiveDataValidatorResolver(
-    private val validators: List<LiveDataValidator>
+class LiveDataValidatorResolver<T>(
+    private val validators: List<DataValidator<T>>
 ) {
     fun isValid(): Boolean {
         for (validator in validators) {

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentAddEditStockTradeBinding
 import com.fxingsign.profitrackr.domain.repository.stocks.dto.StockTradeDto
+import com.fxingsign.profitrackr.util.functional.exhaustive
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,6 +37,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
         binding.apply {
             autocompleteTextViewSymbol.setAdapter(adapter)
             buttonBuy.setOnClickListener {
+
                 if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
                     showInvalidStockIdSnackBar()
                     hideKeyboard(requireContext(), autocompleteTextViewSymbol)
