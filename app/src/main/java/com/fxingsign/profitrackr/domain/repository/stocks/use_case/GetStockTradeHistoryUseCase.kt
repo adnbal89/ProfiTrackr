@@ -12,9 +12,7 @@ class GetStockTradeHistoryUseCase @Inject constructor(
 ) : UseCase<Flow<List<StockTrade>>, String>() {
 
     override suspend fun run(params: String): Either<Failure, Flow<List<StockTrade>>> {
-
-        val stockTradeHistory = stockTradeRepository.getStockTradeHistoryById(params)
-        return stockTradeHistory
+        return stockTradeRepository.getStockTradeHistoryById(params)
     }
 
 }

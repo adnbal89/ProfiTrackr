@@ -2,18 +2,24 @@ package com.fxingsign.profitrackr.presentation.ui.add_edit_stock
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentAddEditStockTradeBinding
-import com.fxingsign.profitrackr.domain.repository.stocks.dto.StockTradeDto
-import com.fxingsign.profitrackr.util.functional.exhaustive
+import com.fxingsign.profitrackr.presentation.form_states.StockTradeFormState
+import com.fxingsign.profitrackr.util.failure
+import com.fxingsign.profitrackr.util.functional.exception.Failure
+import com.fxingsign.profitrackr.util.observe
+import com.fxingsign.profitrackr.util.showSnackbar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 
 @AndroidEntryPoint
@@ -22,6 +28,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
     private val viewModel: StockAddEditTradeViewModel by viewModels()
     val TAG = "StockAddEditTradeFragment"
     var stockId = ""
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,42 +45,54 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
             autocompleteTextViewSymbol.setAdapter(adapter)
             buttonBuy.setOnClickListener {
 
+                val stockTradeFormState = StockTradeFormState(
+                    symbol = binding.autocompleteTextViewSymbol.text.toString(),
+                    buyPrice = binding.editTextPrice.text.toString(),
+                    quantity = binding.editTextQuantity.text.toString(),
+                    date = binding.datePickerDate.text.toString()
+                )
+
                 if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
                     showInvalidStockIdSnackBar()
-                    hideKeyboard(requireContext(), autocompleteTextViewSymbol)
                 } else {
-
-                    val stockTradeDto = createStockTradeDtoFromUi(binding)
-                    val copyStockTradeDto = stockTradeDto.copy(tradeType = "buy")
-                    viewModel.insertStockTrade(copyStockTradeDto)
-                    findNavController().navigateUp()
+                    validateTypedStockTrade(stockTradeFormState)
                 }
+                hideKeyboard(requireContext(), autocompleteTextViewSymbol)
+
             }
 
             buttonSell.setOnClickListener {
+                val stockTradeFormState = StockTradeFormState(
+                    symbol = binding.autocompleteTextViewSymbol.text.toString(),
+                    buyPrice = binding.editTextPrice.text.toString(),
+                    quantity = binding.editTextQuantity.text.toString(),
+                    date = binding.datePickerDate.text.toString()
+                )
                 if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
                     showInvalidStockIdSnackBar()
-                    hideKeyboard(requireContext(), autocompleteTextViewSymbol)
                 } else {
+                    validateTypedStockTrade(stockTradeFormState)
+                }
+                hideKeyboard(requireContext(), autocompleteTextViewSymbol)
 
-                    val stockTradeDto = createStockTradeDtoFromUi(binding)
-                    val copyStockTradeDto = stockTradeDto.copy(tradeType = "sell")
-                    viewModel.insertStockTrade(copyStockTradeDto)
-                    findNavController().navigateUp()
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.events.collect { event ->
+                when (event) {
+                    is StockAddEditTradeViewModel.Event.ShowErrorMessage ->
+                        showSnackbar("Form Validation Failed")
+                    is StockAddEditTradeViewModel.Event.NavigateUp ->
+                        findNavController().navigateUp()
                 }
             }
-
         }
     }
 
-    private fun createStockTradeDtoFromUi(binding: FragmentAddEditStockTradeBinding): StockTradeDto {
-        return StockTradeDto(
-            binding.autocompleteTextViewSymbol.text.toString(),
-            binding.editTextQuantity.text.toString().toInt(),
-            binding.editTextPrice.text.toString().toDouble(),
-            binding.datePickerDate.text.toString(),
-            "buy"
-        )
+
+    private fun validateTypedStockTrade(stockTradeFormState: StockTradeFormState) {
+        viewModel.validateTypedStockTrade(stockTradeFormState)
     }
 
     private fun showInvalidStockIdSnackBar() {
