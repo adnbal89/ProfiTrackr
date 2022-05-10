@@ -2,6 +2,7 @@ package com.fxingsign.profitrackr.data.local.entity
 
 import androidx.room.Dao
 import androidx.room.Query
+import com.fxingsign.profitrackr.domain.SortOrder
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -12,7 +13,7 @@ interface StockPortfolioDao {
                 "symbol," +
                 " SUM(quantity*buyPrice) as totalCost, " +
                 "ROUND(SUM(quantity*buyPrice)/SUM(quantity),2) avgPrice " +
-                "FROM stock_trade_history WHERE symbol =:stockId GROUP BY symbol"
+                "FROM stock_trade_history WHERE symbol =:stockId GROUP BY symbol ORDER BY symbol"
     )
     fun getStockPortfolioById(stockId: String): Flow<List<StockPortfolioEntity>>
 
@@ -22,7 +23,7 @@ interface StockPortfolioDao {
                 " SUM(quantity*buyPrice) as totalCost," +
                 " ROUND(SUM(quantity*buyPrice)/SUM(quantity),2) avgPrice" +
                 " FROM stock_trade_history WHERE symbol " +
-                "LIKE '%' || :searchTerm || '%' GROUP BY symbol"
+                "LIKE '%' || :searchTerm || '%' GROUP BY symbol ORDER BY symbol"
     )
     fun getStockPortfolio(searchTerm: String): Flow<List<StockPortfolioEntity>>
 }

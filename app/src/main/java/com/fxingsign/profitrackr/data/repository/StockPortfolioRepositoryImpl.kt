@@ -3,6 +3,7 @@ package com.fxingsign.profitrackr.data.repository
 import com.fxingsign.profitrackr.data.local.database.StockDatabase
 import com.fxingsign.profitrackr.data.mapper.toStockPortfolio
 import com.fxingsign.profitrackr.data.remote.StockQuoteApi
+import com.fxingsign.profitrackr.domain.SortOrder
 import com.fxingsign.profitrackr.domain.repository.stocks.StockPortfolioRepository
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockPortfolio
 import com.fxingsign.profitrackr.util.functional.Either

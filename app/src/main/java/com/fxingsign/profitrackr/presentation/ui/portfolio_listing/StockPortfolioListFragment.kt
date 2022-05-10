@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentStockListBinding
+import com.fxingsign.profitrackr.domain.SortOrder
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockPortfolio
 import com.fxingsign.profitrackr.presentation.ui.adapters.StockPortfolioListAdapter
 import com.fxingsign.profitrackr.util.failure
@@ -125,11 +126,11 @@ class StockPortfolioListFragment : Fragment(R.layout.fragment_stock_list) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_sort_by_name -> {
-                //viewModel.onSortOrderSelected(SortOrder.BY_NAME)
+                viewModel.searchQuery.value?.let { loadStockPortfolioList(it) }
                 true
             }
             R.id.action_sort_by_date_created -> {
-                //viewModel.onSortOrderSelected(SortOrder.BY_DATE)
+                viewModel.onSortOrderSelected(SortOrder.BY_DATE)
                 true
             }
             R.id.action_add_stock -> {

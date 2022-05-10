@@ -4,10 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.fxingsign.profitrackr.domain.PreferencesManager
+import com.fxingsign.profitrackr.domain.SortOrder
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockPortfolio
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockPortfolioUseCase
+import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockPortfolioUseCase.Params
 import com.fxingsign.profitrackr.presentation.base.BaseViewModel
+import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -19,13 +23,13 @@ import javax.inject.Inject
 @HiltViewModel
 class StockPortfolioListViewModel @Inject constructor(
     private val getStockPortfolioUseCase: GetStockPortfolioUseCase,
+    private val preferencesManager: PreferencesManager,
     private val state: SavedStateHandle
 ) : BaseViewModel() {
     val TAG = "StockPortfolioListViewModel"
 
     private val _stockPortfolioList: MutableLiveData<List<StockPortfolio>> = MutableLiveData()
     val stockPortfolioList: LiveData<List<StockPortfolio>> = _stockPortfolioList
-
 
     val searchQuery = state.getLiveData("searchQuery", "")
 
@@ -39,7 +43,7 @@ class StockPortfolioListViewModel @Inject constructor(
 
 
     fun getStockPortfolioList(searchTerm: String) =
-        getStockPortfolioUseCase(searchTerm, viewModelScope) {
+        getStockPortfolioUseCase(Params(searchTerm), viewModelScope) {
             it.fold(::handleFailure, ::handleStockPortfolioList)
         }
 
@@ -67,6 +71,10 @@ class StockPortfolioListViewModel @Inject constructor(
         _stockPortfolioList.value = _stockPortfolioList.value?.filter {
             it.symbol.contains(searchTerm, ignoreCase = true)
         }
+    }
+
+    fun onSortOrderSelected(sortOrder: SortOrder) = viewModelScope.launch {
+        preferencesManager.updateSortOrder(sortOrder)
     }
 
     //to represent different kinds of events to be able to send to the fragment.
