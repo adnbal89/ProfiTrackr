@@ -5,14 +5,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.fxingsign.profitrackr.domain.repository.stocks.dto.StockTradeDto
+import com.fxingsign.profitrackr.domain.repository.stocks.model.StockQuote
+import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockQuoteUseCase
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.InsertStockTradeUseCase
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.ValidateStockTradeUseCase
 import com.fxingsign.profitrackr.presentation.base.BaseViewModel
 import com.fxingsign.profitrackr.presentation.form_states.StockTradeFormState
 import com.fxingsign.profitrackr.presentation.form_states.StockTradeFormStateResult
+import com.fxingsign.profitrackr.util.Resource
 import com.fxingsign.profitrackr.util.functional.exception.Failure
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,7 +25,8 @@ import javax.inject.Inject
 @HiltViewModel
 class StockAddEditTradeViewModel @Inject constructor(
     private val insertStockTradeUseCase: InsertStockTradeUseCase,
-    private val validateStockTradeUseCase: ValidateStockTradeUseCase
+    private val validateStockTradeUseCase: ValidateStockTradeUseCase,
+    private val getStockQuoteUseCase: GetStockQuoteUseCase
 ) : BaseViewModel() {
 
     private val eventChannel = Channel<Event>()
@@ -28,6 +34,9 @@ class StockAddEditTradeViewModel @Inject constructor(
 
     private val _formValidationResult: MutableLiveData<Boolean> = MutableLiveData()
     val formValidationResult: LiveData<Boolean> = _formValidationResult
+
+    private val _stockQuoteList: MutableLiveData<List<StockQuote>> = MutableLiveData()
+    val stockQuoteList: LiveData<List<StockQuote>> = _stockQuoteList
 
     val TAG = "StockAddEditTradeViewModel"
 
@@ -38,8 +47,17 @@ class StockAddEditTradeViewModel @Inject constructor(
         addRule("username is required") { it.isDigitsOnly() }
     }*/
 
+
     private fun insertStockTrade(stockTradeDto: StockTradeDto) {
         insertStockTradeUseCase(params = stockTradeDto)
+    }
+
+    fun getStockQuote(stockId: String) {
+        val stockList = listOf(stockId)
+
+        getStockQuoteUseCase(params = GetStockQuoteUseCase.Params(stockList), viewModelScope) {
+            it.fold(::handleFailure, ::handleStockQuoteSuccess)
+        }
     }
 
     //This is called whenever the usernameLiveData and passwordLiveData changes
@@ -56,6 +74,17 @@ class StockAddEditTradeViewModel @Inject constructor(
         validateStockTradeUseCase(params = stockTradeFormState, viewModelScope) {
             it.fold(::handleFailure, ::handleValidationSuccess)
         }
+    }
+
+    private fun handleStockQuoteSuccess(stockQuoteList: Flow<Resource<List<StockQuote>>>) {
+        viewModelScope.launch {
+            stockQuoteList.collect {
+                _stockQuoteList.value = it.data
+            }
+        }
+
+        Log.d(TAG, "stock result : $_stockQuoteList")
+
     }
 
     private fun handleValidationSuccess(stockTradeFormStateResult: StockTradeFormStateResult) {

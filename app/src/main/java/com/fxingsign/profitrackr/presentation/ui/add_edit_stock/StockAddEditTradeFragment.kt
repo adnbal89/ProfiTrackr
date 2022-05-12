@@ -43,6 +43,8 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
         val binding = FragmentAddEditStockTradeBinding.bind(view)
         binding.apply {
             autocompleteTextViewSymbol.setAdapter(adapter)
+            getStockQuoteList("AAPL")
+
             buttonBuy.setOnClickListener {
 
                 val stockTradeFormState = StockTradeFormState(
@@ -93,6 +95,10 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
 
     private fun validateTypedStockTrade(stockTradeFormState: StockTradeFormState) {
         viewModel.validateTypedStockTrade(stockTradeFormState)
+    }
+
+    private fun getStockQuoteList(stockId: String){
+        viewModel.getStockQuote(stockId)
     }
 
     private fun showInvalidStockIdSnackBar() {

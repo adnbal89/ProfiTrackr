@@ -5,8 +5,10 @@ import androidx.room.Room
 import com.fxingsign.profitrackr.data.local.database.StockDatabase
 import com.fxingsign.profitrackr.data.remote.StockQuoteApi
 import com.fxingsign.profitrackr.data.repository.StockPortfolioRepositoryImpl
+import com.fxingsign.profitrackr.data.repository.StockQuoteRepositoryImpl
 import com.fxingsign.profitrackr.data.repository.StockTradeRepositoryImpl
 import com.fxingsign.profitrackr.domain.repository.stocks.StockPortfolioRepository
+import com.fxingsign.profitrackr.domain.repository.stocks.StockQuoteRepository
 import com.fxingsign.profitrackr.domain.repository.stocks.StockTradeRepository
 import dagger.Module
 import dagger.Provides
@@ -46,6 +48,14 @@ object AppModule {
     @Singleton
     fun provideStockQuoteApi(retrofit: Retrofit): StockQuoteApi {
         return retrofit.create(StockQuoteApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideStockQuoteRepository(
+        stockQuoteApi: StockQuoteApi
+    ): StockQuoteRepository {
+        return StockQuoteRepositoryImpl(api = stockQuoteApi)
     }
 
     @Provides
