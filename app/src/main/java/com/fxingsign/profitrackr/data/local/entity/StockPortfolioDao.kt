@@ -2,7 +2,6 @@ package com.fxingsign.profitrackr.data.local.entity
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.fxingsign.profitrackr.domain.SortOrder
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -1,6 +1,5 @@
 package com.fxingsign.profitrackr.domain.repository.stocks.use_case
 
-import com.fxingsign.profitrackr.domain.SortOrder
 import com.fxingsign.profitrackr.domain.repository.stocks.StockPortfolioRepository
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockPortfolio
 import com.fxingsign.profitrackr.util.functional.Either

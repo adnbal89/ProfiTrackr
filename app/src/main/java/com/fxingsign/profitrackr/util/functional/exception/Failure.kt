@@ -8,6 +8,7 @@ sealed class Failure : Throwable() {
     object NetworkConnection : Failure()
     object ServerError : Failure()
     object ValidationError : Failure()
+    object IOException : Failure()
 
     /** * Extend this class for feature specific failures.*/
     abstract class FeatureFailure : Failure()

@@ -1,6 +1,6 @@
 package com.fxingsign.profitrackr.domain.repository.stocks
 
-import com.fxingsign.profitrackr.data.remote.dto.StockQuoteDto
+import com.fxingsign.profitrackr.data.remote.dto.StockQuoteDtoItem
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockQuote
 import com.fxingsign.profitrackr.util.Resource
 import com.fxingsign.profitrackr.util.functional.Either
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface StockQuoteRepository {
 
-    suspend fun getStockQuoteById(stockId: String): StockQuoteDto
+    suspend fun getStockQuoteById(stockId: String): Either<Failure, Flow<List<StockQuoteDtoItem>>>
 
     suspend fun getStockQuoteList(stockIdList: List<String>): Either<Failure, Flow<Resource<List<StockQuote>>>>
 

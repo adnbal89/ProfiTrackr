@@ -2,7 +2,10 @@ package com.fxingsign.profitrackr.domain
 
 import android.content.Context
 import android.util.Log
-import androidx.datastore.preferences.*
+import androidx.datastore.preferences.createDataStore
+import androidx.datastore.preferences.edit
+import androidx.datastore.preferences.emptyPreferences
+import androidx.datastore.preferences.preferencesKey
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map

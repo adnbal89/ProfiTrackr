@@ -1,20 +1,16 @@
 package com.fxingsign.profitrackr.domain.repository.stocks.use_case
 
+import com.fxingsign.profitrackr.data.remote.dto.StockQuoteDtoItem
 import com.fxingsign.profitrackr.domain.repository.stocks.StockQuoteRepository
-import com.fxingsign.profitrackr.domain.repository.stocks.model.StockQuote
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockQuoteUseCase.Params
-import com.fxingsign.profitrackr.util.Resource
 import com.fxingsign.profitrackr.util.functional.Either
 import com.fxingsign.profitrackr.util.functional.exception.Failure
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 class GetStockQuoteUseCase @Inject constructor(
     private val repository: StockQuoteRepository
-) : UseCase<Flow<Resource<List<StockQuote>>>, Params>() {
+) : UseCase<Flow<List<StockQuoteDtoItem>>, Params>() {
 
     /*operator fun invoke(stockId: String): Flow<Resource<StockQuote>> = flow {
         try {
@@ -27,8 +23,8 @@ class GetStockQuoteUseCase @Inject constructor(
         }
     }*/
 
-    override suspend fun run(params: Params): Either<Failure, Flow<Resource<List<StockQuote>>>> {
-       return repository.getStockQuoteList(params.stockIdList)
+    override suspend fun run(params: Params): Either<Failure, Flow<List<StockQuoteDtoItem>>> {
+        return repository.getStockQuoteById(params.stockIdList.first())
     }
 
     data class Params(val stockIdList: List<String>)

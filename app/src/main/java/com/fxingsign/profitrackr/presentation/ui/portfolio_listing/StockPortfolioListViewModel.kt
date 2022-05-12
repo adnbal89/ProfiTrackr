@@ -11,7 +11,6 @@ import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockPortfolioUseCase
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockPortfolioUseCase.Params
 import com.fxingsign.profitrackr.presentation.base.BaseViewModel
-import dagger.assisted.Assisted
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

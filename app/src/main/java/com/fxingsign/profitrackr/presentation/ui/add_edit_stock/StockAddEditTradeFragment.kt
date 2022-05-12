@@ -2,7 +2,6 @@ package com.fxingsign.profitrackr.presentation.ui.add_edit_stock
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
@@ -11,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.fxingsign.profitrackr.R
+import com.fxingsign.profitrackr.data.remote.dto.StockQuoteDtoItem
 import com.fxingsign.profitrackr.databinding.FragmentAddEditStockTradeBinding
 import com.fxingsign.profitrackr.presentation.form_states.StockTradeFormState
 import com.fxingsign.profitrackr.util.failure
@@ -29,6 +29,18 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
     val TAG = "StockAddEditTradeFragment"
     var stockId = ""
 
+    private lateinit var binding: FragmentAddEditStockTradeBinding
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        with(viewModel) {
+            observe(stockQuoteList, ::renderStockQuoteList)
+            failure(failure, ::handleFailure)
+        }
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,7 +52,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
             android.R.layout.simple_list_item_1, stocks
         )
 
-        val binding = FragmentAddEditStockTradeBinding.bind(view)
+        binding = FragmentAddEditStockTradeBinding.bind(view)
         binding.apply {
             autocompleteTextViewSymbol.setAdapter(adapter)
             getStockQuoteList("AAPL")
@@ -97,8 +109,16 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
         viewModel.validateTypedStockTrade(stockTradeFormState)
     }
 
-    private fun getStockQuoteList(stockId: String){
+    private fun getStockQuoteList(stockId: String) {
         viewModel.getStockQuote(stockId)
+    }
+
+    private fun renderStockQuoteList(stockQuoteList: List<StockQuoteDtoItem>?) {
+        binding.editTextPrice.setText(stockQuoteList?.first()?.price.toString())
+    }
+
+    private fun handleFailure(failure: Failure?) {
+
     }
 
     private fun showInvalidStockIdSnackBar() {

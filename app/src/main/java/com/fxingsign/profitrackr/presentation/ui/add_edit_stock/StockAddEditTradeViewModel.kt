@@ -4,15 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.fxingsign.profitrackr.data.remote.dto.StockQuoteDtoItem
 import com.fxingsign.profitrackr.domain.repository.stocks.dto.StockTradeDto
-import com.fxingsign.profitrackr.domain.repository.stocks.model.StockQuote
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockQuoteUseCase
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.InsertStockTradeUseCase
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.ValidateStockTradeUseCase
 import com.fxingsign.profitrackr.presentation.base.BaseViewModel
 import com.fxingsign.profitrackr.presentation.form_states.StockTradeFormState
 import com.fxingsign.profitrackr.presentation.form_states.StockTradeFormStateResult
-import com.fxingsign.profitrackr.util.Resource
 import com.fxingsign.profitrackr.util.functional.exception.Failure
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -35,8 +34,8 @@ class StockAddEditTradeViewModel @Inject constructor(
     private val _formValidationResult: MutableLiveData<Boolean> = MutableLiveData()
     val formValidationResult: LiveData<Boolean> = _formValidationResult
 
-    private val _stockQuoteList: MutableLiveData<List<StockQuote>> = MutableLiveData()
-    val stockQuoteList: LiveData<List<StockQuote>> = _stockQuoteList
+    private val _stockQuoteList: MutableLiveData<List<StockQuoteDtoItem>> = MutableLiveData()
+    val stockQuoteList: LiveData<List<StockQuoteDtoItem>> = _stockQuoteList
 
     val TAG = "StockAddEditTradeViewModel"
 
@@ -54,6 +53,8 @@ class StockAddEditTradeViewModel @Inject constructor(
 
     fun getStockQuote(stockId: String) {
         val stockList = listOf(stockId)
+        Log.d(TAG, "getStockQuote : $stockList")
+
 
         getStockQuoteUseCase(params = GetStockQuoteUseCase.Params(stockList), viewModelScope) {
             it.fold(::handleFailure, ::handleStockQuoteSuccess)
@@ -76,15 +77,13 @@ class StockAddEditTradeViewModel @Inject constructor(
         }
     }
 
-    private fun handleStockQuoteSuccess(stockQuoteList: Flow<Resource<List<StockQuote>>>) {
+    private fun handleStockQuoteSuccess(stockQuoteList: Flow<List<StockQuoteDtoItem>>) {
         viewModelScope.launch {
             stockQuoteList.collect {
-                _stockQuoteList.value = it.data
+                Log.d(TAG, "handleStockQuoteSuccess : ${it.first().price}")
+                _stockQuoteList.value = it
             }
         }
-
-        Log.d(TAG, "stock result : $_stockQuoteList")
-
     }
 
     private fun handleValidationSuccess(stockTradeFormStateResult: StockTradeFormStateResult) {
