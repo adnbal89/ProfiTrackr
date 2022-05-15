@@ -2,8 +2,11 @@ package com.fxingsign.profitrackr.presentation.ui.add_edit_stock
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -52,10 +55,16 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
             android.R.layout.simple_list_item_1, stocks
         )
 
+
+
         binding = FragmentAddEditStockTradeBinding.bind(view)
         binding.apply {
             autocompleteTextViewSymbol.setAdapter(adapter)
-            getStockQuoteList("AAPL")
+
+            autocompleteTextViewSymbol.onItemClickListener = OnItemClickListener { _, _, pos, _ ->
+                getStockQuoteList("AAPL")
+            }
+
 
             buttonBuy.setOnClickListener {
 
@@ -69,6 +78,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                 if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
                     showInvalidStockIdSnackBar()
                 } else {
+
                     validateTypedStockTrade(stockTradeFormState)
                 }
                 hideKeyboard(requireContext(), autocompleteTextViewSymbol)
@@ -90,6 +100,55 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                 hideKeyboard(requireContext(), autocompleteTextViewSymbol)
 
             }
+
+
+            binding.editTextPrice.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    //Check Null and calculate cost
+                    // calculate when price and quantity are not null
+                    if (!binding.editTextPrice.text.isNullOrBlank() && !binding.editTextQuantity.text.isNullOrBlank()) {
+                        binding.editTextCost.text = (binding.editTextQuantity.text
+                            .toString().toInt() * binding.editTextPrice.text.toString()
+                            .toDouble()).toString()
+                    }
+                }
+            })
+
+            //TODO : refactor here -> to viewmodel
+            binding.editTextQuantity.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    //Check Null and calculate cost
+                    // calculate when price and quantity are not null
+
+                    if (!binding.editTextPrice.text.isNullOrBlank() && !binding.editTextQuantity.text.isNullOrBlank()) {
+                        binding.editTextCost.text = (binding.editTextQuantity.text
+                            .toString().toInt() * binding.editTextPrice.text.toString()
+                            .toDouble()).toString()
+                    }
+                }
+            })
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {

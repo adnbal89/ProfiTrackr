@@ -66,7 +66,6 @@
         android:id="@+id/text_view_edit_cost_header"
         android:layout_width="60dp"
         android:layout_height="0dp"
-        android:layout_marginStart="0dp"
         android:gravity="start|center_vertical"
         android:text="Maliyet :"
         app:layout_constraintBottom_toTopOf="@+id/text_view_edit_date_header"
