@@ -145,7 +145,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                     if (!binding.editTextPrice.text.isNullOrBlank() && !binding.editTextQuantity.text.isNullOrBlank()) {
                         binding.editTextCost.text = (binding.editTextQuantity.text
                             .toString().toInt() * binding.editTextPrice.text.toString()
-                            .toDouble()).toString()
+                            .toDouble()).roundTo(2).toString()
                     }
                 }
             })
@@ -191,6 +191,10 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
     private fun hideKeyboard(context: Context, view: View) {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun Double.roundTo(n : Int) : Double {
+        return "%.${n}f".format(this).toDouble()
     }
 
 }
