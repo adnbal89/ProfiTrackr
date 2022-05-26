@@ -18,7 +18,8 @@ class ValidateStockTradeUseCase @Inject constructor(
             params.symbol,
             params.quantity,
             params.buyPrice,
-            params.date
+            params.date,
+            params.tradeType
         )
         return result
     }

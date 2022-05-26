@@ -16,7 +16,7 @@
     <string name="symbol">Symbol</string>
     <string name="select_stock">select stock</string>
 
-    <string-array name="stock_symbol_array">
+    <string-array name="bist_stock_symbol_array">
         <item>ACSEL</item>
         <item>ADEL</item>
         <item>ADESE</item>
@@ -524,5 +524,106 @@
         <item>ZRGYO</item>
         <item>ZTM15</item>
 
+    </string-array>
+
+    <string-array name="nasdaq_stock_symbol_array">
+        <item>ATVI</item>
+        <item>ADBE</item>
+        <item>ADP</item>
+        <item>ABNB</item>
+        <item>ALGN</item>
+        <item>GOOGL</item>
+        <item>GOOG</item>
+        <item>AMZN</item>
+        <item>AMD</item>
+        <item>AEP</item>
+        <item>AMGN</item>
+        <item>ADI</item>
+        <item>ANSS</item>
+        <item>AAPL</item>
+        <item>AMAT</item>
+        <item>TEAM</item>
+        <item>ADSK</item>
+        <item>BIDU</item>
+        <item>BIIB</item>
+        <item>BKNG</item>
+        <item>AVGO</item>
+        <item>CDNS</item>
+        <item>CHTR</item>
+        <item>CTAS</item>
+        <item>CSCO</item>
+        <item>CTSH</item>
+        <item>CMCSA</item>
+        <item>CEG</item>
+        <item>CPRT</item>
+        <item>COST</item>
+        <item>CRWD</item>
+        <item>CSX</item>
+        <item>DDOG</item>
+        <item>DXCM</item>
+        <item>DOCU</item>
+        <item>DLTR</item>
+        <item>EBAY</item>
+        <item>EA</item>
+        <item>EXC</item>
+        <item>FAST</item>
+        <item>FISV</item>
+        <item>FTNT</item>
+        <item>GILD</item>
+        <item>HON</item>
+        <item>IDXX</item>
+        <item>ILMN</item>
+        <item>INTC</item>
+        <item>INTU</item>
+        <item>ISRG</item>
+        <item>KDP</item>
+        <item>KLAC</item>
+        <item>KHC</item>
+        <item>LRCX</item>
+        <item>LCID</item>
+        <item>LULU</item>
+        <item>MAR</item>
+        <item>MRVL</item>
+        <item>MTCH</item>
+        <item>MELI</item>
+        <item>FB</item>
+        <item>MCHP</item>
+        <item>MU</item>
+        <item>MSFT</item>
+        <item>MRNA</item>
+        <item>MDLZ</item>
+        <item>MNST</item>
+        <item>NFLX</item>
+        <item>NVDA</item>
+        <item>NXPI</item>
+        <item>ORLY</item>
+        <item>OKTA</item>
+        <item>ODFL</item>
+        <item>PCAR</item>
+        <item>PANW</item>
+        <item>PAYX</item>
+        <item>PYPL</item>
+        <item>PEP</item>
+        <item>PDD</item>
+        <item>QCOM</item>
+        <item>REGN</item>
+        <item>ROST</item>
+        <item>SGEN</item>
+        <item>SIRI</item>
+        <item>SWKS</item>
+        <item>SPLK</item>
+        <item>SBUX</item>
+        <item>SNPS</item>
+        <item>TMUS</item>
+        <item>TSLA</item>
+        <item>TXN</item>
+        <item>VRSN</item>
+        <item>VRSK</item>
+        <item>VRTX</item>
+        <item>WBA</item>
+        <item>WDAY</item>
+        <item>XEL</item>
+        <item>ZM</item>
+        <item>ZS</item>
     </string-array>
 </resources>

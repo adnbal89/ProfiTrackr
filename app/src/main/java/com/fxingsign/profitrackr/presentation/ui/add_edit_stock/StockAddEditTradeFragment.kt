@@ -48,7 +48,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val stocks = resources.getStringArray(R.array.stock_symbol_array)
+        val stocks = resources.getStringArray(R.array.nasdaq_stock_symbol_array)
 
         val adapter = ArrayAdapter(
             requireContext(),
@@ -61,9 +61,10 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
         binding.apply {
             autocompleteTextViewSymbol.setAdapter(adapter)
 
-            autocompleteTextViewSymbol.onItemClickListener = OnItemClickListener { _, _, pos, _ ->
-                getStockQuoteList("AAPL")
-            }
+            autocompleteTextViewSymbol.onItemClickListener =
+                OnItemClickListener { parent, _, pos, _ ->
+                    getStockQuoteList(parent.getItemAtPosition(pos).toString())
+                }
 
 
             buttonBuy.setOnClickListener {
@@ -72,13 +73,13 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                     symbol = binding.autocompleteTextViewSymbol.text.toString(),
                     buyPrice = binding.editTextPrice.text.toString(),
                     quantity = binding.editTextQuantity.text.toString(),
-                    date = binding.datePickerDate.text.toString()
+                    date = binding.datePickerDate.text.toString(),
+                    tradeType = "buy"
                 )
 
                 if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
                     showInvalidStockIdSnackBar()
                 } else {
-
                     validateTypedStockTrade(stockTradeFormState)
                 }
                 hideKeyboard(requireContext(), autocompleteTextViewSymbol)
@@ -90,7 +91,8 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                     symbol = binding.autocompleteTextViewSymbol.text.toString(),
                     buyPrice = binding.editTextPrice.text.toString(),
                     quantity = binding.editTextQuantity.text.toString(),
-                    date = binding.datePickerDate.text.toString()
+                    date = binding.datePickerDate.text.toString(),
+                    tradeType = "sell"
                 )
                 if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
                     showInvalidStockIdSnackBar()
@@ -193,7 +195,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    fun Double.roundTo(n : Int) : Double {
+    fun Double.roundTo(n: Int): Double {
         return "%.${n}f".format(this).toDouble()
     }
 

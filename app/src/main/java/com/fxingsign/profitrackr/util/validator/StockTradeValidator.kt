@@ -13,7 +13,8 @@ class StockTradeValidator @Inject constructor() {
         symbol: String,
         quantity: String,
         price: String,
-        date: String
+        date: String,
+        tradeType: String
     ): Either<Failure, StockTradeFormStateResult> {
 
         val stockTradeFormStateResult =
@@ -52,7 +53,8 @@ class StockTradeValidator @Inject constructor() {
                     symbol = symbol,
                     quantity = quantity,
                     buyPrice = price,
-                    date = date
+                    date = date,
+                    tradeType = tradeType
                 )
                 Either.Right(copyStockTradeFormStateResult)
             }
