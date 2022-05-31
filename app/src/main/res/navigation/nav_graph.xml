@@ -21,7 +21,9 @@
     <fragment
         android:id="@+id/stockAddEditTradeFragment"
         android:name="com.fxingsign.profitrackr.presentation.ui.add_edit_stock.StockAddEditTradeFragment"
-        android:label="{title}">
+        android:label="{title}"
+        tools:layout="@layout/fragment_add_edit_stock_trade"
+        >
         <argument
             android:name="stockId"
             app:argType="string"
@@ -29,18 +31,26 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <argument
+            android:name="stockTrade"
+            app:argType="com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade"
+            app:nullable="true" />
     </fragment>
 
     <fragment
         android:id="@+id/stockTradeHistoryFragment"
         android:name="com.fxingsign.profitrackr.presentation.ui.stock_trade.StockTradeHistoryFragment"
-        android:label="{title}">
+        android:label="{title}"
+        tools:layout="@layout/fragment_stock_trade_history">
         <argument
             android:name="stockId"
             app:argType="string" />
         <argument
             android:name="title"
             app:argType="string" />
+        <action
+            android:id="@+id/action_stockTradeHistoryFragment_to_stockAddEditTradeFragment"
+            app:destination="@id/stockAddEditTradeFragment" />
     </fragment>
 
 </navigation>

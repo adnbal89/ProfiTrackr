@@ -70,7 +70,8 @@ class StockPortfolioListFragment : Fragment(R.layout.fragment_stock_list) {
                         val action =
                             StockPortfolioListFragmentDirections.actionStockPortfolioListFragmentToStockAddEditTradeFragment(
                                 null,
-                                getString(R.string.add_new_stock_trade)
+                                getString(R.string.add_new_stock_trade),
+
                             )
                         findNavController().navigate(action)
                     }
