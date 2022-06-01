@@ -60,9 +60,10 @@ class StockPortfolioListViewModel @Inject constructor(
             stocksEventChannel.send(StocksEvent.NavigateToAddStockTradeScreen)
         }
 
-    fun onStockClicked(stockId: String) =
+    fun onStockClicked(stockId: String,stockPortfolio: StockPortfolio) =
         viewModelScope.launch {
-            stocksEventChannel.send(StocksEvent.NavigateToStockHistoryScreen(stockId))
+            //stocksEventChannel.send(StocksEvent.NavigateToStockHistoryScreen(stockId))
+            stocksEventChannel.send(StocksEvent.NavigateToEditStockTradeScreen(stockPortfolio))
         }
 
     fun filterStockList(searchTerm: String) {
@@ -79,9 +80,12 @@ class StockPortfolioListViewModel @Inject constructor(
     //to represent different kinds of events to be able to send to the fragment.
     sealed class StocksEvent {
         object NavigateToAddStockTradeScreen : StocksEvent()
-        data class NavigateToEditStockTradeScreen(val stockTrade: StockTrade) : StocksEvent()
+        //TODO:change to stockTrade
+        data class NavigateToEditStockTradeScreen(val stockPortfolio: StockPortfolio) : StocksEvent()
         data class NavigateToStockHistoryScreen(val stockId: String) : StocksEvent()
         data class ShowUndoDeleteTaskMessage(val stockTrade: StockTrade) : StocksEvent()
         data class ShowTaskSavedConfirmationMessage(val msg: String) : StocksEvent()
     }
+
+
 }

@@ -33,7 +33,7 @@
             app:argType="string" />
         <argument
             android:name="stockTrade"
-            app:argType="com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade"
+            app:argType="com.fxingsign.profitrackr.domain.repository.stocks.model.StockPortfolio"
             app:nullable="true" />
     </fragment>
 

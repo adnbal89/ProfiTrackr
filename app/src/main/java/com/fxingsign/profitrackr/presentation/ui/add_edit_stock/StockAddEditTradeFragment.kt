@@ -56,7 +56,6 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
         )
 
 
-
         binding = FragmentAddEditStockTradeBinding.bind(view)
         binding.apply {
             autocompleteTextViewSymbol.setAdapter(adapter)
@@ -151,6 +150,14 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                     }
                 }
             })
+
+            if (viewModel.stockTrade != null){
+                autocompleteTextViewSymbol.setText(viewModel.stockTrade?.symbol)
+            editTextCost.text = viewModel.stockTrade?.totalCost.toString()
+            editTextPrice.setText(viewModel.stockTrade?.avgPrice.toString())
+            editTextQuantity.setText(viewModel.stockTrade?.totalQty.toString())
+        }
+
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {

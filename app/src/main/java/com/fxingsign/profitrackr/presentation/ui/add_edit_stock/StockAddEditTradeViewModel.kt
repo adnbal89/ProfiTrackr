@@ -3,15 +3,19 @@ package com.fxingsign.profitrackr.presentation.ui.add_edit_stock
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.fxingsign.profitrackr.data.remote.dto.StockQuoteDtoItem
 import com.fxingsign.profitrackr.domain.repository.stocks.dto.StockTradeDto
+import com.fxingsign.profitrackr.domain.repository.stocks.model.StockPortfolio
+import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockQuoteUseCase
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.InsertStockTradeUseCase
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.ValidateStockTradeUseCase
 import com.fxingsign.profitrackr.presentation.base.BaseViewModel
 import com.fxingsign.profitrackr.presentation.form_states.StockTradeFormState
 import com.fxingsign.profitrackr.presentation.form_states.StockTradeFormStateResult
+import com.fxingsign.profitrackr.presentation.ui.portfolio_listing.StockPortfolioListViewModel
 import com.fxingsign.profitrackr.util.functional.exception.Failure
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -25,7 +29,8 @@ import javax.inject.Inject
 class StockAddEditTradeViewModel @Inject constructor(
     private val insertStockTradeUseCase: InsertStockTradeUseCase,
     private val validateStockTradeUseCase: ValidateStockTradeUseCase,
-    private val getStockQuoteUseCase: GetStockQuoteUseCase
+    private val getStockQuoteUseCase: GetStockQuoteUseCase,
+    private val state: SavedStateHandle
 ) : BaseViewModel() {
 
     private val eventChannel = Channel<Event>()
@@ -38,6 +43,10 @@ class StockAddEditTradeViewModel @Inject constructor(
     val stockQuoteList: LiveData<List<StockQuoteDtoItem>> = _stockQuoteList
 
     val TAG = "StockAddEditTradeViewModel"
+
+    //get the object from nav_graph ,
+    // argument has to be the same as the nav_Graph -> argument name
+    val stockTrade = state.get<StockPortfolio>("stockTrade")
 
     /* var quantityData: String = ""
 

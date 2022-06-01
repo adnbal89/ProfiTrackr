@@ -8,8 +8,10 @@ import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockTradeHistoryUseCase
 import com.fxingsign.profitrackr.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,6 +25,14 @@ class StockTradeHistoryViewModel @Inject constructor(
     //get the object from nav_graph ,
     // argument has to be the same as the nav_Graph -> argument name
     val stockId = state.get<String>("stockId")
+
+    //channel instantiation. carries TasksEvent
+    //if we expose a channel to the outside, then consumer fragment can put something in it. we do not want that.
+    //to not to expose channel outside, we create tasksEvent val.
+    private val stocksHistoryEventChannel = Channel<StockHistoryEvent>()
+
+    //basically turns this channel into a flow that we can than the fragment can use the single values out of it.
+    val stocksHistoryEvent = stocksHistoryEventChannel.receiveAsFlow()
 
 
     private val _stockTrades: MutableLiveData<List<StockTrade>> = MutableLiveData()
@@ -43,9 +53,21 @@ class StockTradeHistoryViewModel @Inject constructor(
         }
     }
 
+    fun onStockHistoryClicked(stockId: String, stockTrade: StockTrade) =
+        viewModelScope.launch {
+            //stocksEventChannel.send(StocksEvent.NavigateToStockHistoryScreen(stockId))
+            stocksHistoryEventChannel.send(
+                StockHistoryEvent.NavigateToEditStockTradeScreen(
+                    stockTrade
+                )
+            )
+        }
+
     sealed class StockHistoryEvent {
         data class ShowInvalidInputMessage(val msg: String) : StockHistoryEvent()
         data class NavigateBackWithResult(val result: String) : StockHistoryEvent()
         data class NavigateBackWithStockResult(val result: String) : StockHistoryEvent()
+        data class NavigateToEditStockTradeScreen(val stockTrade: StockTrade) : StockHistoryEvent()
+
     }
 }

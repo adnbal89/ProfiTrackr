@@ -33,7 +33,7 @@ class StockPortfolioListFragment : Fragment(R.layout.fragment_stock_list) {
 
     private val stockPortfolioListAdapter = StockPortfolioListAdapter(
         onItemClick = { stockPortfolio ->
-            viewModel.onStockClicked(stockPortfolio.symbol)
+            viewModel.onStockClicked(stockPortfolio.symbol, stockPortfolio )
         }
     )
 
@@ -71,8 +71,8 @@ class StockPortfolioListFragment : Fragment(R.layout.fragment_stock_list) {
                             StockPortfolioListFragmentDirections.actionStockPortfolioListFragmentToStockAddEditTradeFragment(
                                 null,
                                 getString(R.string.add_new_stock_trade),
-
-                            )
+                                null
+                                )
                         findNavController().navigate(action)
                     }
                     is StockPortfolioListViewModel.StocksEvent.NavigateToStockHistoryScreen -> {
@@ -85,7 +85,15 @@ class StockPortfolioListFragment : Fragment(R.layout.fragment_stock_list) {
                     }
                     is StockPortfolioListViewModel.StocksEvent.ShowTaskSavedConfirmationMessage -> TODO()
                     is StockPortfolioListViewModel.StocksEvent.ShowUndoDeleteTaskMessage -> TODO()
-                    is StockPortfolioListViewModel.StocksEvent.NavigateToEditStockTradeScreen -> TODO()
+                    is StockPortfolioListViewModel.StocksEvent.NavigateToEditStockTradeScreen -> {
+                        val action =
+                            StockPortfolioListFragmentDirections.actionStockPortfolioListFragmentToStockAddEditTradeFragment(
+                                event.stockPortfolio.symbol,
+                                getString(R.string.edit_stock_trade),
+                                stockTrade = event.stockPortfolio
+                            )
+                        findNavController().navigate(action)
+                    }
                 }.exhaustive
             }
         }
