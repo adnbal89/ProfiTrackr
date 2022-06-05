@@ -15,6 +15,7 @@ import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentStockListBinding
 import com.fxingsign.profitrackr.domain.SortOrder
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockPortfolio
+import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.presentation.ui.adapters.StockPortfolioListAdapter
 import com.fxingsign.profitrackr.util.failure
 import com.fxingsign.profitrackr.util.functional.exception.Failure
@@ -69,9 +70,9 @@ class StockPortfolioListFragment : Fragment(R.layout.fragment_stock_list) {
                     StockPortfolioListViewModel.StocksEvent.NavigateToAddStockTradeScreen -> {
                         val action =
                             StockPortfolioListFragmentDirections.actionStockPortfolioListFragmentToStockAddEditTradeFragment(
-                                null,
+                                "add",
                                 getString(R.string.add_new_stock_trade),
-
+                                null
                             )
                         findNavController().navigate(action)
                     }
@@ -146,5 +147,9 @@ class StockPortfolioListFragment : Fragment(R.layout.fragment_stock_list) {
     override fun onDestroy() {
         super.onDestroy()
         searchView.setOnQueryTextListener(null)
+    }
+
+    fun Double.roundTo(n: Int): Double {
+        return "%.${n}f".format(this).toDouble()
     }
 }

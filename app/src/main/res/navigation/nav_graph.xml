@@ -25,7 +25,7 @@
         tools:layout="@layout/fragment_add_edit_stock_trade"
         >
         <argument
-            android:name="stockId"
+            android:name="operation_type"
             app:argType="string"
             app:nullable="true" />
         <argument

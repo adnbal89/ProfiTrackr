@@ -18,6 +18,10 @@ fun StockTradeEntity.toStockTrade(): StockTrade {
 fun StockTradeDto.toStockTradeEntity(): StockTradeEntity {
 
     return StockTradeEntity(
+        id = when(id) {
+            0 -> 0
+            else -> id
+        },
         symbol = symbol,
         quantity = quantity,
         buyPrice = buyPrice,

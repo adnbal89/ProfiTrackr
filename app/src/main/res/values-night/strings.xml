@@ -4,4 +4,7 @@
     <string name="buy_sell">Buy / Sell</string>
     <string name="date">Date</string>
     <string name="price">Price</string>
+    <string name="edit_stock_trade">Edit Stock</string>
+    <string name="buy">BUY</string>
+    <string name="sell">SELL</string>
 </resources>

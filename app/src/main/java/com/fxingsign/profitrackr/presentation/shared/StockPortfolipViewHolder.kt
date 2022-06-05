@@ -12,9 +12,9 @@ class StockPortfolioViewHolder(
     fun bind(stockPortfolio: StockPortfolio) {
         binding.apply {
             textViewSymbol.text = stockPortfolio.symbol
-            textViewCost.text = stockPortfolio.totalCost.toString()
+            textViewCost.text = stockPortfolio.totalCost.roundTo(2).toString().toString()
             textViewQuantity.text = stockPortfolio.totalQty.toString()
-            textViewPrice.text = stockPortfolio.avgPrice.toString()
+            textViewPrice.text = stockPortfolio.avgPrice.roundTo(2).toString()
         }
     }
 
@@ -27,5 +27,10 @@ class StockPortfolioViewHolder(
                 }
             }
         }
+    }
+
+
+    fun Double.roundTo(n: Int): Double {
+        return "%.${n}f".format(this).toDouble()
     }
 }

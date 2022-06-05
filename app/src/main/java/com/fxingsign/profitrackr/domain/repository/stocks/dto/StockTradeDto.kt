@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class StockTradeDto(
+    val id: Int,
     val symbol: String,
     val quantity: Int,
     val buyPrice: Double,

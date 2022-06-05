@@ -17,8 +17,8 @@ class StockTradeViewHolder(
             textViewTradeType.text = stockTrade.tradeType
             setViewBackgroundColor(textViewTradeType, stockTrade, binding)
             textViewQuantity.text = stockTrade.quantity.toString()
-            textViewPrice.text = stockTrade.buyPrice.toString()
-            textViewCost.text = (stockTrade.buyPrice * stockTrade.quantity).toString()
+            textViewPrice.text = stockTrade.buyPrice.roundTo(2).toString()
+            textViewCost.text = (stockTrade.buyPrice * stockTrade.quantity).roundTo(2).toString()
             textViewDate.text = stockTrade.date
 
         }
@@ -33,6 +33,10 @@ class StockTradeViewHolder(
                 }
             }
         }
+    }
+
+    fun Double.roundTo(n: Int): Double {
+        return "%.${n}f".format(this).toDouble()
     }
 }
 
@@ -61,4 +65,6 @@ private fun setViewBackgroundColor(
                 )
         }
     }
+
+
 }

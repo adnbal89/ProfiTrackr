@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentStockTradeHistoryBinding
@@ -13,8 +15,8 @@ import com.fxingsign.profitrackr.presentation.ui.add_edit_stock.StockAddEditTrad
 import com.fxingsign.profitrackr.util.failure
 import com.fxingsign.profitrackr.util.functional.exception.Failure
 import com.fxingsign.profitrackr.util.observe
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history) {
@@ -24,10 +26,7 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
 
     private val stockTradeHistoryAdapter = StockTradeHistoryListAdapter(
         onItemClick = { stockTrade ->
-            Snackbar.make(
-                requireView(), "StockTrade Clicked",
-                Snackbar.LENGTH_LONG
-            ).show()
+            viewModel.onStockTradeClicked(stockTrade)
         }
     )
 
@@ -44,6 +43,25 @@ class StockTradeHistoryFragment : Fragment(R.layout.fragment_stock_trade_history
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentStockTradeHistoryBinding.bind(view)
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.stocksEvent.collect { event ->
+                when (event) {
+                    is StockTradeHistoryViewModel.StockHistoryEvent.NavigateBackWithResult -> TODO()
+                    is StockTradeHistoryViewModel.StockHistoryEvent.NavigateBackWithStockResult -> TODO()
+                    is StockTradeHistoryViewModel.StockHistoryEvent.NavigateToEditStockTradeScreen -> {
+                        val action =
+                            StockTradeHistoryFragmentDirections.actionStockTradeHistoryFragmentToStockAddEditTradeFragment(
+                                "edit",
+                                getString(R.string.edit_stock_trade),
+                                stockTrade = event.stockTrade
+                            )
+                        findNavController().navigate(action)
+                    }
+                    is StockTradeHistoryViewModel.StockHistoryEvent.ShowInvalidInputMessage -> TODO()
+                }
+            }
+        }
 
         binding.apply {
             recyclerViewStockTrades.apply {

@@ -15,6 +15,11 @@
     <string name="stock_trade_history">Stock Trade History</string>
     <string name="symbol">Symbol</string>
     <string name="select_stock">select stock</string>
+    <string name="edit_stock_trade">Edit Stock</string>
+    <string name="buy">BUY</string>
+    <string name="sell">SELL</string>
+    <string name="save">SAVE</string>
+    <string name="cancel">CANCEL</string>
 
     <string-array name="bist_stock_symbol_array">
         <item>ACSEL</item>
