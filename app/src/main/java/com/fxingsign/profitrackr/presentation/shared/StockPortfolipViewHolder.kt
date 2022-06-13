@@ -15,6 +15,15 @@ class StockPortfolioViewHolder(
             textViewCost.text = stockPortfolio.totalCost.roundTo(2).toString().toString()
             textViewQuantity.text = stockPortfolio.totalQty.toString()
             textViewPrice.text = stockPortfolio.avgPrice.roundTo(2).toString()
+            textViewTotal.text =
+                (stockPortfolio.totalQty * stockPortfolio.lastPrice).roundTo(2).toString()
+            textViewLastPrice.text = stockPortfolio.lastPrice.roundTo(2).toString()
+            textViewDifference.text =
+                (stockPortfolio.lastPrice - stockPortfolio.avgPrice).roundTo(2).toString()
+            textViewProfit.text =
+                ((stockPortfolio.totalQty * stockPortfolio.lastPrice) - stockPortfolio.totalCost).roundTo(
+                    2
+                ).toString()
         }
     }
 

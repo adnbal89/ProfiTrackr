@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.domain.repository.stocks.use_case.GetStockTradeHistoryUseCase
 import com.fxingsign.profitrackr.presentation.base.BaseViewModel
-import com.fxingsign.profitrackr.presentation.ui.portfolio_listing.StockPortfolioListViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

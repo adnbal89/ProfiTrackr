@@ -180,17 +180,24 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                 autocompleteTextViewSymbol.setText(viewModel.stockTrade?.symbol)
                 editTextQuantity.setText(viewModel.stockTrade?.quantity.toString())
                 editTextPrice.setText(viewModel.stockTrade?.buyPrice.toString())
-                editTextCost.text = (viewModel.stockTrade?.quantity?.times(viewModel.stockTrade?.buyPrice!!)).toString()
+                editTextCost.text =
+                    (viewModel.stockTrade?.quantity?.times(viewModel.stockTrade?.buyPrice!!)).toString()
                 datePickerDate.setText(viewModel.stockTrade?.date)
                 textViewTradeType.visibility = View.VISIBLE
                 switchTradeType.visibility = View.VISIBLE
 
                 when (viewModel.stockTrade?.tradeType) {
-                    "buy" -> {switchTradeType.text = resources.getString(R.string.buy)
-                    switchTradeType.isChecked = true}
-                    "sell" -> {switchTradeType.text = resources.getString(R.string.sell)
-                        switchTradeType.isChecked = false}
+                    "buy" -> {
+                        switchTradeType.text = resources.getString(R.string.buy)
+                        switchTradeType.isChecked = true
+                    }
+                    "sell" -> {
+                        switchTradeType.text = resources.getString(R.string.sell)
+                        switchTradeType.isChecked = false
+                    }
                 }
+                switchTradeType.visibility = View.VISIBLE
+                textViewTradeType.visibility = View.VISIBLE
                 buttonBuy.setText(R.string.save)
                 buttonSell.setText(R.string.cancel)
                 buttonSell.setBackgroundColor(resources.getColor(R.color.gray))
