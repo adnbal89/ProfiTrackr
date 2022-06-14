@@ -1,6 +1,7 @@
 package com.fxingsign.profitrackr.presentation.form_states
 
 data class StockTradeFormState(
+    val id: Int,
     val symbol: String = "",
     val symbolError: String? = null,
     val quantity: String = "",
