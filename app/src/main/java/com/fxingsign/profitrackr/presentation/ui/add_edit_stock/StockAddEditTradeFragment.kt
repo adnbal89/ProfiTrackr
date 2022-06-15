@@ -57,52 +57,41 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
 
         binding = FragmentAddEditStockTradeBinding.bind(view)
 
-        if (viewModel.operationType == "add") {
+
             binding.apply {
+                if(viewModel.operationType == "edit") {
+
+                    autocompleteTextViewSymbol.setText(viewModel.stockTrade?.symbol)
+                    editTextQuantity.setText(viewModel.stockTrade?.quantity.toString())
+                    editTextPrice.setText(viewModel.stockTrade?.buyPrice?.roundTo(2).toString())
+                    editTextCost.text =
+                        (viewModel.stockTrade?.quantity?.times(viewModel.stockTrade?.buyPrice!!)
+                            ?.roundTo(2)).toString()
+                    datePickerDate.setText(viewModel.stockTrade?.date)
+                    textViewTradeType.visibility = View.VISIBLE
+                    switchTradeType.visibility = View.VISIBLE
+
+
+                    when (viewModel.stockTrade?.tradeType) {
+                        "buy" -> {
+                            switchTradeType.text = resources.getString(R.string.buy)
+                            switchTradeType.isChecked = true
+                        }
+                        "sell" -> {
+                            switchTradeType.text = resources.getString(R.string.sell)
+                            switchTradeType.isChecked = false
+                        }
+                    }
+                    buttonBuy.setText(R.string.save)
+                    buttonSell.setText(R.string.cancel)
+                    buttonSell.setBackgroundColor(resources.getColor(R.color.gray))
+                }
                 autocompleteTextViewSymbol.setAdapter(adapter)
 
                 autocompleteTextViewSymbol.onItemClickListener =
                     OnItemClickListener { parent, _, pos, _ ->
                         getStockQuoteList(parent.getItemAtPosition(pos).toString())
                     }
-
-
-                buttonBuy.setOnClickListener {
-
-                    val stockTradeFormState = StockTradeFormState(
-                        symbol = binding.autocompleteTextViewSymbol.text.toString(),
-                        buyPrice = binding.editTextPrice.text.toString(),
-                        quantity = binding.editTextQuantity.text.toString(),
-                        date = binding.datePickerDate.text.toString(),
-                        tradeType = "buy"
-                    )
-
-                    if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
-                        showInvalidStockIdSnackBar()
-                    } else {
-                        validateTypedStockTrade(stockTradeFormState)
-                    }
-                    hideKeyboard(requireContext(), autocompleteTextViewSymbol)
-
-                }
-
-                buttonSell.setOnClickListener {
-                    val stockTradeFormState = StockTradeFormState(
-                        symbol = binding.autocompleteTextViewSymbol.text.toString(),
-                        buyPrice = binding.editTextPrice.text.toString(),
-                        quantity = binding.editTextQuantity.text.toString(),
-                        date = binding.datePickerDate.text.toString(),
-                        tradeType = "sell"
-                    )
-                    if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
-                        showInvalidStockIdSnackBar()
-                    } else {
-                        validateTypedStockTrade(stockTradeFormState)
-                    }
-                    hideKeyboard(requireContext(), autocompleteTextViewSymbol)
-
-                }
-
 
                 binding.editTextPrice.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {
@@ -161,7 +150,44 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                         }
                     }
                 })
+
+                buttonBuy.setOnClickListener {
+
+                    val stockTradeFormState = StockTradeFormState(
+                        symbol = binding.autocompleteTextViewSymbol.text.toString(),
+                        buyPrice = binding.editTextPrice.text.toString(),
+                        quantity = binding.editTextQuantity.text.toString(),
+                        date = binding.datePickerDate.text.toString(),
+                        tradeType = "buy"
+                    )
+
+                    if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
+                        showInvalidStockIdSnackBar()
+                    } else {
+                        validateTypedStockTrade(stockTradeFormState)
+                    }
+                    hideKeyboard(requireContext(), autocompleteTextViewSymbol)
+
+                }
+
+                buttonSell.setOnClickListener {
+                    val stockTradeFormState = StockTradeFormState(
+                        symbol = binding.autocompleteTextViewSymbol.text.toString(),
+                        buyPrice = binding.editTextPrice.text.toString(),
+                        quantity = binding.editTextQuantity.text.toString(),
+                        date = binding.datePickerDate.text.toString(),
+                        tradeType = "sell"
+                    )
+                    if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
+                        showInvalidStockIdSnackBar()
+                    } else {
+                        validateTypedStockTrade(stockTradeFormState)
+                    }
+                    hideKeyboard(requireContext(), autocompleteTextViewSymbol)
+
+                }
             }
+
 
             viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                 viewModel.events.collect { event ->
@@ -174,36 +200,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                 }
             }
 
-        } else {
 
-            binding.apply {
-                autocompleteTextViewSymbol.setText(viewModel.stockTrade?.symbol)
-                editTextQuantity.setText(viewModel.stockTrade?.quantity.toString())
-                editTextPrice.setText(viewModel.stockTrade?.buyPrice.toString())
-                editTextCost.text =
-                    (viewModel.stockTrade?.quantity?.times(viewModel.stockTrade?.buyPrice!!)).toString()
-                datePickerDate.setText(viewModel.stockTrade?.date)
-                textViewTradeType.visibility = View.VISIBLE
-                switchTradeType.visibility = View.VISIBLE
-
-                when (viewModel.stockTrade?.tradeType) {
-                    "buy" -> {
-                        switchTradeType.text = resources.getString(R.string.buy)
-                        switchTradeType.isChecked = true
-                    }
-                    "sell" -> {
-                        switchTradeType.text = resources.getString(R.string.sell)
-                        switchTradeType.isChecked = false
-                    }
-                }
-                switchTradeType.visibility = View.VISIBLE
-                textViewTradeType.visibility = View.VISIBLE
-                buttonBuy.setText(R.string.save)
-                buttonSell.setText(R.string.cancel)
-                buttonSell.setBackgroundColor(resources.getColor(R.color.gray))
-            }
-
-        }
     }
 
 
