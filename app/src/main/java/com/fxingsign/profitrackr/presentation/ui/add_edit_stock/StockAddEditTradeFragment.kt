@@ -68,6 +68,11 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                     (viewModel.stockTrade?.quantity?.times(viewModel.stockTrade?.buyPrice!!)
                         ?.roundTo(2)).toString()
                 datePickerDate.setText(viewModel.stockTrade?.date)
+                //check the relevant tradetype according to stockTrade's saved tradetype.
+                when (viewModel.stockTrade?.tradeType) {
+                    "buy" -> toggleGroup.check(toggleBuy.id)
+                    "sell" -> toggleGroup.check(toggleSell.id)
+                }
                 textViewTradeType.visibility = View.VISIBLE
                 toggleGroup.visibility = View.VISIBLE
 
@@ -141,6 +146,16 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
             })
 
             buttonBuy.setOnClickListener {
+                var tradeType: String = "buy"
+                if (viewModel.operationType == "edit") {
+                    //it means cancel button pressed, do nothing and go back
+                    tradeType = when (toggleGroup.checkedButtonId) {
+                        toggleBuy.id -> "buy"
+                        toggleSell.id -> "sell"
+                        else -> ""
+                    }
+
+                }
 
 
                 val stockTradeFormState = StockTradeFormState(
@@ -149,7 +164,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                     buyPrice = binding.editTextPrice.text.toString(),
                     quantity = binding.editTextQuantity.text.toString(),
                     date = binding.datePickerDate.text.toString(),
-                    tradeType = "buy"
+                    tradeType = tradeType
                 )
 
                 if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {

@@ -195,11 +195,9 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#4CC551"
             android:insetRight="5dp"
-
+            android:backgroundTint="#80B2D55C"
             android:text="@string/buy"
-
             android:textColor="@color/white"
 
             />
@@ -209,8 +207,8 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#C62121"
             android:insetLeft="5dp"
+            android:backgroundTint="#80D35C5C"
             android:text="@string/sell"
 
             android:textColor="@color/white"
