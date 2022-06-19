@@ -18,7 +18,7 @@ fun StockTradeEntity.toStockTrade(): StockTrade {
 fun StockTradeDto.toStockTradeEntity(): StockTradeEntity {
 
     return StockTradeEntity(
-        id = when(id) {
+        id = when (id) {
             0 -> 0
             else -> id
         },

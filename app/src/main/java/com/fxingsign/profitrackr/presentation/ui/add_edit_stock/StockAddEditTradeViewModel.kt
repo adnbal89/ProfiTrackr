@@ -102,6 +102,7 @@ class StockAddEditTradeViewModel @Inject constructor(
             "stockTradeFormStateResult.validationResult : ${stockTradeFormStateResult.validationResult}"
         )
         val stockTradeDto = createStockTradeDtoFromStateResult(stockTradeFormStateResult)
+        Log.d(TAG, "createStockTradeDtoFromStateResult" + stockTradeDto.id)
         insertStockTrade(stockTradeDto)
         viewModelScope.launch { eventChannel.send(Event.NavigateUp) }
 
@@ -113,8 +114,10 @@ class StockAddEditTradeViewModel @Inject constructor(
 
 
     private fun createStockTradeDtoFromStateResult(stockTradeFormStateResult: StockTradeFormStateResult): StockTradeDto {
+        Log.d(TAG, "createStockTradeDtoFromStateResult" + stockTrade?.id)
+
         return StockTradeDto(
-            0,
+            id = stockTrade?.id ?: 0,
             stockTradeFormStateResult.symbol,
             stockTradeFormStateResult.quantity.toInt(),
             stockTradeFormStateResult.buyPrice.toDouble(),

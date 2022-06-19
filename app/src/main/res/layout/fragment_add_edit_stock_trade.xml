@@ -92,7 +92,7 @@
         android:layout_marginStart="10dp"
         android:datePickerMode="calendar"
         android:gravity="start|center_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/switch_trade_type"
+        app:layout_constraintBottom_toTopOf="@+id/toggleGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/text_view_edit_date_header"
@@ -165,25 +165,58 @@
         android:layout_height="64dp"
         android:gravity="start|center_vertical"
         android:text="Trade"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/button_sell"
-        app:layout_constraintEnd_toStartOf="@+id/switch_trade_type"
+        app:layout_constraintEnd_toStartOf="@+id/toggleGroup"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/autocomplete_text_view_symbol"
         app:layout_constraintTop_toBottomOf="@+id/text_view_edit_date_header" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_trade_type"
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleGroup"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="10dp"
         android:ems="10"
+        android:gravity="center_horizontal|center_vertical"
         android:inputType="textPersonName"
         android:text=""
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/button_sell"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView_trade_type"
-        app:layout_constraintTop_toBottomOf="@+id/date_picker_date" />
+        app:layout_constraintTop_toBottomOf="@+id/date_picker_date"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/toggle_buy"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4CC551"
+            android:insetRight="5dp"
+
+            android:text="@string/buy"
+
+            android:textColor="@color/white"
+
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/toggle_sell"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#C62121"
+            android:insetLeft="5dp"
+            android:text="@string/sell"
+
+            android:textColor="@color/white"
+
+            />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

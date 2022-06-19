@@ -22,8 +22,7 @@
         android:id="@+id/stockAddEditTradeFragment"
         android:name="com.fxingsign.profitrackr.presentation.ui.add_edit_stock.StockAddEditTradeFragment"
         android:label="{title}"
-        tools:layout="@layout/fragment_add_edit_stock_trade"
-        >
+        tools:layout="@layout/fragment_add_edit_stock_trade">
         <argument
             android:name="operation_type"
             app:argType="string"

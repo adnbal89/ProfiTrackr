@@ -15,7 +15,6 @@ import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.FragmentStockListBinding
 import com.fxingsign.profitrackr.domain.SortOrder
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockPortfolio
-import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
 import com.fxingsign.profitrackr.presentation.ui.adapters.StockPortfolioListAdapter
 import com.fxingsign.profitrackr.util.failure
 import com.fxingsign.profitrackr.util.functional.exception.Failure

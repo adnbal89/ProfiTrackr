@@ -58,120 +58,116 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
         binding = FragmentAddEditStockTradeBinding.bind(view)
 
 
-            binding.apply {
-                if(viewModel.operationType == "edit") {
+        binding.apply {
+            if (viewModel.operationType == "edit") {
 
-                    autocompleteTextViewSymbol.setText(viewModel.stockTrade?.symbol)
-                    editTextQuantity.setText(viewModel.stockTrade?.quantity.toString())
-                    editTextPrice.setText(viewModel.stockTrade?.buyPrice?.roundTo(2).toString())
-                    editTextCost.text =
-                        (viewModel.stockTrade?.quantity?.times(viewModel.stockTrade?.buyPrice!!)
-                            ?.roundTo(2)).toString()
-                    datePickerDate.setText(viewModel.stockTrade?.date)
-                    textViewTradeType.visibility = View.VISIBLE
-                    switchTradeType.visibility = View.VISIBLE
+                autocompleteTextViewSymbol.setText(viewModel.stockTrade?.symbol)
+                editTextQuantity.setText(viewModel.stockTrade?.quantity.toString())
+                editTextPrice.setText(viewModel.stockTrade?.buyPrice?.roundTo(2).toString())
+                editTextCost.text =
+                    (viewModel.stockTrade?.quantity?.times(viewModel.stockTrade?.buyPrice!!)
+                        ?.roundTo(2)).toString()
+                datePickerDate.setText(viewModel.stockTrade?.date)
+                textViewTradeType.visibility = View.VISIBLE
+                toggleGroup.visibility = View.VISIBLE
 
+                buttonBuy.setText(R.string.save)
+                buttonSell.setText(R.string.cancel)
+                buttonSell.setBackgroundColor(resources.getColor(R.color.gray))
+            }
+            autocompleteTextViewSymbol.setAdapter(adapter)
 
-                    when (viewModel.stockTrade?.tradeType) {
-                        "buy" -> {
-                            switchTradeType.text = resources.getString(R.string.buy)
-                            switchTradeType.isChecked = true
-                        }
-                        "sell" -> {
-                            switchTradeType.text = resources.getString(R.string.sell)
-                            switchTradeType.isChecked = false
-                        }
-                    }
-                    buttonBuy.setText(R.string.save)
-                    buttonSell.setText(R.string.cancel)
-                    buttonSell.setBackgroundColor(resources.getColor(R.color.gray))
-                }
-                autocompleteTextViewSymbol.setAdapter(adapter)
-
-                autocompleteTextViewSymbol.onItemClickListener =
-                    OnItemClickListener { parent, _, pos, _ ->
-                        getStockQuoteList(parent.getItemAtPosition(pos).toString())
-                    }
-
-                binding.editTextPrice.addTextChangedListener(object : TextWatcher {
-                    override fun afterTextChanged(s: Editable?) {
-                    }
-
-                    override fun beforeTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        count: Int,
-                        after: Int
-                    ) {
-                    }
-
-                    override fun onTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        before: Int,
-                        count: Int
-                    ) {
-                        //Check Null and calculate cost
-                        // calculate when price and quantity are not null
-                        if (!binding.editTextPrice.text.isNullOrBlank() && !binding.editTextQuantity.text.isNullOrBlank()) {
-                            binding.editTextCost.text = (binding.editTextQuantity.text
-                                .toString().toInt() * binding.editTextPrice.text.toString()
-                                .toDouble()).toString()
-                        }
-                    }
-                })
-
-                //TODO : refactor here -> to viewmodel
-                binding.editTextQuantity.addTextChangedListener(object : TextWatcher {
-                    override fun afterTextChanged(s: Editable?) {
-                    }
-
-                    override fun beforeTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        count: Int,
-                        after: Int
-                    ) {
-                    }
-
-                    override fun onTextChanged(
-                        s: CharSequence?,
-                        start: Int,
-                        before: Int,
-                        count: Int
-                    ) {
-                        //Check Null and calculate cost
-                        // calculate when price and quantity are not null
-
-                        if (!binding.editTextPrice.text.isNullOrBlank() && !binding.editTextQuantity.text.isNullOrBlank()) {
-                            binding.editTextCost.text = (binding.editTextQuantity.text
-                                .toString().toInt() * binding.editTextPrice.text.toString()
-                                .toDouble()).roundTo(2).toString()
-                        }
-                    }
-                })
-
-                buttonBuy.setOnClickListener {
-
-                    val stockTradeFormState = StockTradeFormState(
-                        symbol = binding.autocompleteTextViewSymbol.text.toString(),
-                        buyPrice = binding.editTextPrice.text.toString(),
-                        quantity = binding.editTextQuantity.text.toString(),
-                        date = binding.datePickerDate.text.toString(),
-                        tradeType = "buy"
-                    )
-
-                    if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
-                        showInvalidStockIdSnackBar()
-                    } else {
-                        validateTypedStockTrade(stockTradeFormState)
-                    }
-                    hideKeyboard(requireContext(), autocompleteTextViewSymbol)
-
+            autocompleteTextViewSymbol.onItemClickListener =
+                OnItemClickListener { parent, _, pos, _ ->
+                    getStockQuoteList(parent.getItemAtPosition(pos).toString())
                 }
 
-                buttonSell.setOnClickListener {
+            binding.editTextPrice.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    //Check Null and calculate cost
+                    // calculate when price and quantity are not null
+                    if (!binding.editTextPrice.text.isNullOrBlank() && !binding.editTextQuantity.text.isNullOrBlank()) {
+                        binding.editTextCost.text = (binding.editTextQuantity.text
+                            .toString().toInt() * binding.editTextPrice.text.toString()
+                            .toDouble()).toString()
+                    }
+                }
+            })
+
+            //TODO : refactor here -> to viewmodel
+            binding.editTextQuantity.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    //Check Null and calculate cost
+                    // calculate when price and quantity are not null
+
+                    if (!binding.editTextPrice.text.isNullOrBlank() && !binding.editTextQuantity.text.isNullOrBlank()) {
+                        binding.editTextCost.text = (binding.editTextQuantity.text
+                            .toString().toInt() * binding.editTextPrice.text.toString()
+                            .toDouble()).roundTo(2).toString()
+                    }
+                }
+            })
+
+            buttonBuy.setOnClickListener {
+
+
+                val stockTradeFormState = StockTradeFormState(
+                    id = viewModel.stockTrade?.id ?: 0,
+                    symbol = binding.autocompleteTextViewSymbol.text.toString(),
+                    buyPrice = binding.editTextPrice.text.toString(),
+                    quantity = binding.editTextQuantity.text.toString(),
+                    date = binding.datePickerDate.text.toString(),
+                    tradeType = "buy"
+                )
+
+                if (!stocks.contains<String>(autocompleteTextViewSymbol.text.toString())) {
+                    showInvalidStockIdSnackBar()
+                } else {
+                    validateTypedStockTrade(stockTradeFormState)
+                }
+                hideKeyboard(requireContext(), autocompleteTextViewSymbol)
+
+            }
+
+            buttonSell.setOnClickListener {
+                if (viewModel.operationType == "edit") {
+                    //it means cancel button pressed, do nothing and go back
+                    findNavController().navigateUp()
+                } else {
                     val stockTradeFormState = StockTradeFormState(
+                        id = viewModel.stockTrade?.id ?: 0,
                         symbol = binding.autocompleteTextViewSymbol.text.toString(),
                         buyPrice = binding.editTextPrice.text.toString(),
                         quantity = binding.editTextQuantity.text.toString(),
@@ -184,21 +180,21 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                         validateTypedStockTrade(stockTradeFormState)
                     }
                     hideKeyboard(requireContext(), autocompleteTextViewSymbol)
-
                 }
             }
+        }
 
 
-            viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-                viewModel.events.collect { event ->
-                    when (event) {
-                        is StockAddEditTradeViewModel.Event.ShowErrorMessage ->
-                            showSnackbar("Form Validation Failed")
-                        is StockAddEditTradeViewModel.Event.NavigateUp ->
-                            findNavController().navigateUp()
-                    }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.events.collect { event ->
+                when (event) {
+                    is StockAddEditTradeViewModel.Event.ShowErrorMessage ->
+                        showSnackbar("Form Validation Failed")
+                    is StockAddEditTradeViewModel.Event.NavigateUp ->
+                        findNavController().navigateUp()
                 }
             }
+        }
 
 
     }

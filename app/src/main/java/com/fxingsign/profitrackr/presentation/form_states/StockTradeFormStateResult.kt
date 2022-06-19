@@ -6,6 +6,7 @@ data class StockTradeFormStateResult(
     var quantityError: String? = null,
     var buyPriceError: String? = null,
     var dateError: String? = null,
+    val id: Int = 0,
     val symbol: String = "",
     val quantity: String = "",
     val buyPrice: String = "",
