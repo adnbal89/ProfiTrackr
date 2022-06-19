@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StockPortfolioDao {
-
     @Query(
         "SELECT SUM(quantity) as totalQty, " +
                 "symbol," +
@@ -20,7 +19,7 @@ interface StockPortfolioDao {
         "SELECT SUM(b.quantity) - COALESCE((SELECT SUM(a.quantity) as totalQty FROM stock_trade_history a WHERE symbol LIKE '%' || :searchTerm || '%' and a.symbol = b.symbol and tradeType = 'sell' GROUP BY symbol ORDER BY symbol),0) as totalQty, " +
                 "b.symbol," +
                 "SUM(b.quantity*b.buyPrice) as totalCost," +
-                "ROUND(SUM(b.quantity*b.buyPrice)/SUM(b.quantity),2) avgPrice" +
+                "ROUND( (SUM(b.quantity*b.buyPrice)/SUM(b.quantity) ) ,2  ) avgPrice" +
                 " FROM stock_trade_history b WHERE b.symbol " +
                 "LIKE '%' || :searchTerm || '%' and b.tradeType = 'buy' GROUP BY b.symbol ORDER BY b.symbol"
     )
