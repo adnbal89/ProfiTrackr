@@ -148,7 +148,4 @@ class StockPortfolioListFragment : Fragment(R.layout.fragment_stock_list) {
         searchView.setOnQueryTextListener(null)
     }
 
-    fun Double.roundTo(n: Int): Double {
-        return "%.${n}f".format(this).toDouble()
-    }
 }

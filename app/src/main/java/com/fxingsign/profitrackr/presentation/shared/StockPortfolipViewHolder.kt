@@ -3,6 +3,7 @@ package com.fxingsign.profitrackr.presentation.shared
 import androidx.recyclerview.widget.RecyclerView
 import com.fxingsign.profitrackr.databinding.ItemStockBinding
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockPortfolio
+import com.fxingsign.profitrackr.util.roundTo
 
 class StockPortfolioViewHolder(
     private val binding: ItemStockBinding,
@@ -38,8 +39,4 @@ class StockPortfolioViewHolder(
         }
     }
 
-
-    fun Double.roundTo(n: Int): Double {
-        return "%.${n}f".format(this).toDouble()
-    }
 }

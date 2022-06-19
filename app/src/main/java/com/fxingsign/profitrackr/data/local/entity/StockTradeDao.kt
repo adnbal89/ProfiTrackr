@@ -2,8 +2,8 @@ package com.fxingsign.profitrackr.data.local.entity
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.google.android.material.circularreveal.CircularRevealHelper
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,7 +14,7 @@ interface StockTradeDao {
         stockTradeEntity: List<StockTradeEntity>
     )
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStockTrade(
         stockTradeEntity: StockTradeEntity
     )

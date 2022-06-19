@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fxingsign.profitrackr.R
 import com.fxingsign.profitrackr.databinding.ItemStockTradeHistoryBinding
 import com.fxingsign.profitrackr.domain.repository.stocks.model.StockTrade
+import com.fxingsign.profitrackr.util.roundTo
 
 class StockTradeViewHolder(
     private val binding: ItemStockTradeHistoryBinding,
@@ -35,9 +36,6 @@ class StockTradeViewHolder(
         }
     }
 
-    fun Double.roundTo(n: Int): Double {
-        return "%.${n}f".format(this).toDouble()
-    }
 }
 
 private fun setViewBackgroundColor(

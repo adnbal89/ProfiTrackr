@@ -19,6 +19,7 @@ import com.fxingsign.profitrackr.presentation.form_states.StockTradeFormState
 import com.fxingsign.profitrackr.util.failure
 import com.fxingsign.profitrackr.util.functional.exception.Failure
 import com.fxingsign.profitrackr.util.observe
+import com.fxingsign.profitrackr.util.roundTo
 import com.fxingsign.profitrackr.util.showSnackbar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -154,6 +155,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                 buttonBuy.setOnClickListener {
 
                     val stockTradeFormState = StockTradeFormState(
+                        viewModel.stockTrade?.id ?: 0,
                         symbol = binding.autocompleteTextViewSymbol.text.toString(),
                         buyPrice = binding.editTextPrice.text.toString(),
                         quantity = binding.editTextQuantity.text.toString(),
@@ -231,10 +233,6 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
     private fun hideKeyboard(context: Context, view: View) {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
-    }
-
-    fun Double.roundTo(n: Int): Double {
-        return "%.${n}f".format(this).toDouble()
     }
 
 }
