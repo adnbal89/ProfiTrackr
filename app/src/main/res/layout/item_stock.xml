@@ -48,7 +48,7 @@
         android:layout_width="70dp"
         android:layout_height="0dp"
         android:gravity="start|center_vertical"
-        android:text="Fiyat :"
+        android:text="Ort. Fiyat :"
         app:layout_constraintBottom_toTopOf="@+id/text_view_last_price_header"
         app:layout_constraintEnd_toStartOf="@+id/text_view_price"
         app:layout_constraintHorizontal_bias="0.5"

@@ -1,9 +1,12 @@
 package com.fxingsign.profitrackr.presentation.ui.add_edit_stock
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView.OnItemClickListener
@@ -23,6 +26,7 @@ import com.fxingsign.profitrackr.util.showSnackbar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -45,6 +49,7 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -144,6 +149,34 @@ class StockAddEditTradeFragment : Fragment(R.layout.fragment_add_edit_stock_trad
                     }
                 }
             })
+
+
+            //TODO : Refactor -> Move inner functions to viewmodel
+            datePickerDate.setOnTouchListener { view, motionEvent ->
+                when (motionEvent.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        val cal = Calendar.getInstance()
+                        val year = cal.get(Calendar.YEAR)
+                        val month = cal.get(Calendar.MONTH)
+                        val day = cal.get(Calendar.DAY_OF_MONTH)
+                        val datePickerDialog = DatePickerDialog(
+                            view.context,
+                            { _, myear, mmonth, mdayOfMonth ->
+                                datePickerDate.setText("$mdayOfMonth/$mmonth/$myear")
+                            },
+                            year,
+                            month,
+                            day
+                        )
+                        datePickerDialog.show()
+                        true
+                    }
+
+                    else -> {
+                        false
+                    }
+                }
+            }
 
             buttonBuy.setOnClickListener {
                 var tradeType: String = "buy"

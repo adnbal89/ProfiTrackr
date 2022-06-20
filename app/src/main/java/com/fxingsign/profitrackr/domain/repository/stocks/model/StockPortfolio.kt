@@ -9,5 +9,5 @@ data class StockPortfolio(
     val totalQty: Int,
     val totalCost: Double,
     val avgPrice: Double,
-    val lastPrice: Double = 0.0
+    val lastPrice: Double = 5.0
 ) : Parcelable

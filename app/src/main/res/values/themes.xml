@@ -15,5 +15,5 @@
         <!-- Customize your theme here. -->
         <item name="colorSurface">@android:color/white</item>
 
-        </style>
+    </style>
 </resources>

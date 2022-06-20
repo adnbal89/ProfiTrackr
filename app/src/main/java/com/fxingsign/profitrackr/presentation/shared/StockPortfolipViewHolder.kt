@@ -11,8 +11,14 @@ class StockPortfolioViewHolder(
 
     fun bind(stockPortfolio: StockPortfolio) {
         binding.apply {
+            val profit =
+                ((stockPortfolio.totalQty * stockPortfolio.lastPrice) - (stockPortfolio.totalQty * stockPortfolio.avgPrice)).roundTo(
+                    2
+                )
+            val cost = (stockPortfolio.totalQty * stockPortfolio.avgPrice).roundTo(2)
+
             textViewSymbol.text = stockPortfolio.symbol
-            textViewCost.text = stockPortfolio.totalCost.roundTo(2).toString().toString()
+            textViewCost.text = cost.toString()
             textViewQuantity.text = stockPortfolio.totalQty.toString()
             textViewPrice.text = stockPortfolio.avgPrice.roundTo(2).toString()
             textViewTotal.text =
@@ -20,10 +26,10 @@ class StockPortfolioViewHolder(
             textViewLastPrice.text = stockPortfolio.lastPrice.roundTo(2).toString()
             textViewDifference.text =
                 (stockPortfolio.lastPrice - stockPortfolio.avgPrice).roundTo(2).toString()
-            textViewProfit.text =
-                ((stockPortfolio.totalQty * stockPortfolio.lastPrice) - stockPortfolio.totalCost).roundTo(
-                    2
-                ).toString()
+            textViewProfit.text = profit
+                .toString()
+
+            textViewProfitPercentage.text = (profit / cost * 100).roundTo(1).toString() + " %"
         }
 
     }
